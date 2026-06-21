@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String     @id // Clerk user ID
+  email     String     @unique
+  name      String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  activities Activity[]
+  goals      Goal[]
+  challenges ChallengeParticipation[]
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // e.g. 'transport', 'food', 'energy'
+  description String?
+  carbonValue Float    // the calculated footprint or savings for this activity
+  isReduction Boolean  @default(false) // true if this activity saved carbon
+  points      Int      @default(0)     // points earned for leaderboards
+  date        DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Goal {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  targetValue Float    // e.g. target carbon reduction
+  currentValue Float   @default(0)
+  deadline    DateTime?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Challenge {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  targetMetric  Float
+  rewardPoints  Int
+  endDate       DateTime
+  createdAt     DateTime @default(now())
+
+  participations ChallengeParticipation[]
+}
+
+model ChallengeParticipation {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String
+  progress    Float    @default(0)
+  completed   Boolean  @default(false)
+  joinedAt    DateTime @default(now())
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+}
+
+model AIInsight {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // 'summary', 'recommendations', 'forecast'
+  content     String   // JSON string of the insight data
+  dataHash    String   // Hash of user data at generation time for cache invalidation
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, type])
+}

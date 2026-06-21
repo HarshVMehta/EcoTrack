@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - AI Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,300..800&amp;family=Nunito+Sans:opsz,wght@6..12,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#f8e0a8",
+                        "surface-variant": "#e4e0d8",
+                        "on-primary-container": "#d8f0de",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#221a05",
+                        "surface-container-low": "#f5f1ea",
+                        "inverse-primary": "#8ecf9e",
+                        "on-secondary-fixed": "#1e1a13",
+                        "on-error": "#ffffff",
+                        "surface": "#faf6f0",
+                        "error": "#b83230",
+                        "tertiary-fixed-dim": "#dcc48e",
+                        "primary-fixed-dim": "#8ecf9e",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#d4ccbf",
+                        "primary-fixed": "#c8e8d0",
+                        "primary-container": "#78a886",
+                        "outline-variant": "#c4c8bc",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf6f0",
+                        "error-container": "#ffdad8",
+                        "inverse-on-surface": "#f5f0e8",
+                        "surface-container": "#f0ece4",
+                        "on-primary-fixed-variant": "#2a6038",
+                        "primary": "#4a7c59",
+                        "background": "#faf6f0",
+                        "surface-container-high": "#eae6de",
+                        "secondary": "#6b6358",
+                        "secondary-container": "#f0e8db",
+                        "secondary-fixed": "#f0e8db",
+                        "on-surface": "#2e3230",
+                        "on-secondary-container": "#5e5548",
+                        "surface-dim": "#dbd7cf",
+                        "tertiary-container": "#c4a66a",
+                        "on-surface-variant": "#4a4e4a",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#74796e",
+                        "on-tertiary-container": "#554020",
+                        "on-secondary-fixed-variant": "#4a4538",
+                        "tertiary": "#705c30",
+                        "surface-container-highest": "#e4e0d8",
+                        "surface-tint": "#4a7c59",
+                        "inverse-surface": "#2e3230",
+                        "on-background": "#2e3230",
+                        "on-tertiary-fixed-variant": "#554020",
+                        "on-primary-fixed": "#002110",
+                        "on-error-container": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Literata", "serif"],
+                        "display": ["Literata", "serif"],
+                        "body": ["Nunito Sans", "sans-serif"],
+                        "label": ["Nunito Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+        
+        /* Custom scrollbar for an organic feel */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: #dbd7cf; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #c4c8bc; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/30 py-4 z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<div>
+<div class="font-headline text-xl text-primary font-semibold">EcoTrack</div>
+<div class="font-body text-xs text-on-surface-variant">Sustainability Platform</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 font-body text-sm">
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>Dashboard
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">calculate</span>Calculator
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">query_stats</span>Tracker
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>Community
+            </a>
+<a class="flex items-center gap-3 bg-primary-container dark:bg-primary-fixed text-on-primary-container dark:text-on-primary-fixed rounded-lg px-4 py-2 mx-2 transition-all duration-200 ease-in-out font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>AI Insights
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">smart_toy</span>Chatbot
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">flag</span>Goals
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">leaderboard</span>Analytics
+            </a>
+</div>
+<div class="px-6 mt-auto pb-4">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                Upgrade to Pro
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopAppBar -->
+<header class="w-full h-16 sticky top-0 z-50 flex justify-between items-center px-6 bg-surface dark:bg-surface-dim shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex items-center md:hidden">
+<span class="material-symbols-outlined text-primary font-bold mr-2">menu</span>
+<span class="font-headline text-2xl font-bold text-primary dark:text-primary-fixed-dim">EcoTrack</span>
+</div>
+<div class="hidden md:block font-headline text-2xl font-bold text-primary dark:text-primary-fixed-dim">
+<!-- Spacing element for alignment on desktop -->
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-200 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-200 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-9 h-9 rounded-full bg-tertiary-container overflow-hidden ml-2 flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-on-tertiary-container">person</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<main class="flex-1 overflow-y-auto p-6 md:p-10 lg:px-12 pb-24">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline text-4xl text-on-surface font-semibold tracking-tight mb-2">AI Insights</h1>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Your predictive sustainability analysis powered by Terra AI. Uncover deep patterns in your lifestyle to maximize positive environmental impact.</p>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-2 border border-outline-variant/30 text-sm font-medium text-primary">
+<span class="w-2 h-2 rounded-full bg-primary pulse-slow"></span>
+                    Model Updated: Today
+                </div>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Dynamic Sustainability Score -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 shadow-[0_4px_20px_rgba(46,50,48,0.04)] flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-container/30 rounded-full blur-3xl group-hover:bg-primary-container/50 transition-colors duration-700"></div>
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-tertiary-container/20 rounded-full blur-2xl"></div>
+<h2 class="font-headline text-xl text-on-surface mb-6 self-start w-full z-10">Eco Score</h2>
+<div class="relative w-40 h-40 flex items-center justify-center z-10">
+<!-- Decorative SVG Ring -->
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="283" stroke-dashoffset="42" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center">
+<span class="font-headline text-5xl font-bold text-primary">85</span>
+<span class="text-on-surface-variant text-sm mt-1">/ 100</span>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 bg-primary-container/50 text-on-primary-container px-4 py-2 rounded-full text-sm font-bold z-10">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+                        Top 15% in Community
+                    </div>
+</div>
+<!-- Carbon Footprint Predictions (Trend Line) -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 shadow-[0_4px_20px_rgba(46,50,48,0.04)] lg:col-span-2 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline text-xl text-on-surface mb-1">Emission Forecast</h2>
+<p class="text-on-surface-variant text-sm">Predicted 6-month trajectory based on current habits.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-outline"></span> <span class="text-xs text-on-surface-variant mr-3">Historical</span>
+<span class="w-3 h-3 rounded-full bg-primary"></span> <span class="text-xs text-on-surface-variant">Predicted</span>
+</div>
+</div>
+<!-- Mock Chart Area -->
+<div class="flex-1 w-full h-48 relative mt-auto border-b border-l border-outline-variant/30 pb-2 pl-2">
+<!-- Y Axis labels -->
+<div class="absolute left-[-2rem] top-0 h-full flex flex-col justify-between text-[10px] text-on-surface-variant/70 items-end pr-1">
+<span>400kg</span>
+<span>200kg</span>
+<span>0kg</span>
+</div>
+<!-- Chart Lines -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Grid lines -->
+<line class="text-outline-variant/50" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5" x1="0" x2="100" y1="50" y2="50"></line>
+<!-- Historical Path (Gray) -->
+<path class="text-outline" d="M0,80 Q10,70 20,75 T40,60 T60,50" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Predicted Path (Green/Primary) -->
+<path class="text-primary" d="M60,50 Q70,40 80,45 T100,20" fill="none" stroke="currentColor" stroke-dasharray="4 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Current Node -->
+<circle class="text-primary" cx="60" cy="50" fill="currentColor" r="3"></circle>
+</svg>
+<!-- X Axis labels -->
+<div class="absolute bottom-[-1.5rem] left-0 w-full flex justify-between text-[10px] text-on-surface-variant/70 px-2">
+<span>Jan</span>
+<span>Mar</span>
+<span class="text-primary font-bold">Now</span>
+<span>Sep</span>
+<span>Dec</span>
+</div>
+</div>
+</div>
+<!-- Emission Breakdown -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 shadow-[0_4px_20px_rgba(46,50,48,0.04)] flex flex-col">
+<h2 class="font-headline text-xl text-on-surface mb-6">Category Breakdown</h2>
+<div class="flex-1 flex flex-col gap-5 justify-center">
+<!-- Item 1 -->
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[18px] text-tertiary">home</span> Home Energy</span>
+<span class="font-bold">45%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full w-[45%]"></div>
+</div>
+</div>
+<!-- Item 2 -->
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[18px] text-primary">directions_car</span> Transport</span>
+<span class="font-bold">35%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[35%]"></div>
+</div>
+</div>
+<!-- Item 3 -->
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[18px] text-secondary">restaurant</span> Diet &amp; Food</span>
+<span class="font-bold">20%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-[20%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Potential CO2 Savings Metrics -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 shadow-[0_4px_20px_rgba(46,50,48,0.04)] flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-9xl">energy_savings_leaf</span>
+</div>
+<div>
+<h2 class="font-headline text-xl text-on-surface mb-2">Potential Savings</h2>
+<p class="text-on-surface-variant text-sm mb-6">If all AI recommendations are implemented.</p>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="font-headline text-6xl font-bold text-primary">-142</span>
+<span class="text-xl text-on-surface-variant">kg</span>
+</div>
+<p class="text-on-surface-variant font-medium">CO₂e per month</p>
+</div>
+<div class="mt-6 bg-surface p-4 rounded-xl border border-outline-variant/20">
+<p class="text-sm text-on-surface-variant italic">"Equivalent to planting 6 adult trees every month."</p>
+</div>
+</div>
+<!-- Personalized Recommendations (Span full or partial) -->
+<div class="lg:col-span-3 bg-transparent rounded-[2rem] pt-4">
+<div class="flex justify-between items-end mb-6 px-2">
+<h2 class="font-headline text-2xl text-on-surface font-semibold">AI Action Plan</h2>
+<button class="text-primary font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Recommendation Card 1 -->
+<div class="bg-surface-container-low rounded-[1.5rem] overflow-hidden flex flex-col sm:flex-row shadow-[0_4px_20px_rgba(46,50,48,0.03)] hover:shadow-[0_8px_30px_rgba(46,50,48,0.08)] transition-shadow duration-300 border border-transparent hover:border-primary/20">
+<div class="sm:w-2/5 h-48 sm:h-auto relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A warm, sunlit residential roof featuring modern solar panels blending seamlessly with the architecture. The scene is bathed in golden hour light, highlighting earthy tones, deep greens from surrounding trees, and a soft cream sky, reflecting a grounded, organic sustainability aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7YGUd-7bgMgl6L7rfSVwmM19JsrRKpBNZFOxNDiKa5Rda6NgibhX4GpzQwkUqal757O0Lg7F728UWskb6uYNty0LpCfJ7_Gpnw1t8jP1fh-v9r4hO21fUgVRGpwpklbL8Px8owfy1oFdxfAxI5YahEVKoN4gCO_C_9nawpgPsbHqF3r3Wip8SVrDDLeY11WiWYHCjoqxlYrK_3m2XIgKLy0Rabcgin1htNBdOTXT44rG4dIbfEv3k8hcLKxkwxJNw7-Tb5X80i2yE')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent sm:bg-gradient-to-r"></div>
+</div>
+<div class="p-6 sm:w-3/5 flex flex-col justify-center">
+<div class="flex items-center gap-2 text-tertiary mb-2 text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">solar_power</span> High Impact
+                                </div>
+<h3 class="font-headline text-lg text-on-surface font-semibold mb-2">Switch to Solar Energy</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">Based on your geographic location and energy usage patterns, solar panels could reduce your grid reliance by 70%.</p>
+<button class="mt-auto self-start border border-outline px-4 py-2 rounded-xl text-sm font-bold text-primary hover:bg-primary-container/30 transition-colors">Explore Options</button>
+</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="bg-surface-container-low rounded-[1.5rem] overflow-hidden flex flex-col sm:flex-row shadow-[0_4px_20px_rgba(46,50,48,0.03)] hover:shadow-[0_8px_30px_rgba(46,50,48,0.08)] transition-shadow duration-300 border border-transparent hover:border-primary/20">
+<div class="sm:w-2/5 h-48 sm:h-auto relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A close-up of a beautifully crafted wooden compost bin in a lush backyard garden. Rich, dark soil and vibrant green plant clippings are visible. Soft, diffused natural sunlight creates a warm, approachable mood, emphasizing natural textures and an earthy, desaturated color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2GQx-0NdbWzc6CjJ_UM8kKdx1Vr3foyJ3BsRGaFaai8UdKvAXDQfbFCXxE9juqnucVD7Aidt3aasxWD4HuMrOSbd91rVuhA3T3IhLSGK6X6ayxfFX3VXe-rZFJ95nZJNnt7HGloHQ1fnycJga0B3yfM3HPBLbNTOTYr5UNiTOuMyPHlpwxD-JA1C61YSdTMEKPkSBNJQYu2bblAwO6z-Li27tPy4CI7Cuj8R0JZ_PY639YySqd_LETgRLqrpOrz4g4ayHUFafDKIV')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent sm:bg-gradient-to-r"></div>
+</div>
+<div class="p-6 sm:w-3/5 flex flex-col justify-center">
+<div class="flex items-center gap-2 text-primary mb-2 text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">compost</span> Easy Win
+                                </div>
+<h3 class="font-headline text-lg text-on-surface font-semibold mb-2">Start a Home Compost</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">Your organic waste contributes to 15% of your footprint. Composting turns this waste into nutrient-rich soil for your garden.</p>
+<button class="mt-auto self-start border border-outline px-4 py-2 rounded-xl text-sm font-bold text-primary hover:bg-primary-container/30 transition-colors">View Guide</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

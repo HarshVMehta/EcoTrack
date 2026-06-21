@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400..900&amp;family=Nunito+Sans:opsz,wght@6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "inverse-surface": "#2e3230",
+                            "surface-bright": "#faf6f0",
+                            "primary": "#4a7c59",
+                            "surface-variant": "#e4e0d8",
+                            "primary-container": "#78a886",
+                            "primary-fixed": "#c8e8d0",
+                            "inverse-on-surface": "#f5f0e8",
+                            "tertiary-fixed": "#f8e0a8",
+                            "on-error-container": "#690005",
+                            "on-secondary-fixed-variant": "#4a4538",
+                            "on-secondary-fixed": "#1e1a13",
+                            "on-secondary-container": "#5e5548",
+                            "secondary-container": "#f0e8db",
+                            "surface": "#faf6f0",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-fixed-dim": "#d4ccbf",
+                            "surface-container-low": "#f5f1ea",
+                            "outline": "#74796e",
+                            "surface-container": "#f0ece4",
+                            "background": "#faf6f0",
+                            "error": "#b83230",
+                            "on-tertiary-fixed-variant": "#554020",
+                            "tertiary-container": "#c4a66a",
+                            "on-primary": "#ffffff",
+                            "tertiary-fixed-dim": "#dcc48e",
+                            "on-primary-container": "#d8f0de",
+                            "on-surface": "#2e3230",
+                            "secondary-fixed": "#f0e8db",
+                            "on-tertiary-fixed": "#221a05",
+                            "error-container": "#ffdad8",
+                            "inverse-primary": "#8ecf9e",
+                            "surface-container-highest": "#e4e0d8",
+                            "tertiary": "#705c30",
+                            "on-error": "#ffffff",
+                            "on-tertiary-container": "#554020",
+                            "on-secondary": "#ffffff",
+                            "secondary": "#6b6358",
+                            "surface-container-high": "#eae6de",
+                            "surface-tint": "#4a7c59",
+                            "surface-dim": "#dbd7cf",
+                            "on-primary-fixed-variant": "#2a6038",
+                            "on-primary-fixed": "#002110",
+                            "primary-fixed-dim": "#8ecf9e",
+                            "on-tertiary": "#ffffff",
+                            "on-background": "#2e3230",
+                            "outline-variant": "#c4c8bc",
+                            "on-surface-variant": "#4a4e4a"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.5rem",
+                            "lg": "1rem",
+                            "xl": "1.5rem",
+                            "full": "9999px"
+                    },
+                    "fontFamily": {
+                            "headline": ["Literata"],
+                            "display": ["Literata"],
+                            "body": ["Nunito Sans"],
+                            "label": ["Nunito Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .soft-shadow { box-shadow: 0 4px 20px rgba(46, 50, 48, 0.06); }
+        .glass-card { background: rgba(250, 246, 240, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(196, 200, 188, 0.3); }
+        .progress-ring__circle { transition: stroke-dashoffset 0.8s ease-in-out; transform: rotate(-90deg); transform-origin: 50% 50%; }
+        
+        /* Chart specific */
+        .chart-line { stroke: theme('colors.primary'); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .chart-area { fill: url(#chartGradient); opacity: 0.3; }
+        .chart-grid { stroke: theme('colors.outline-variant'); stroke-width: 1; stroke-dasharray: 4; opacity: 0.5; }
+        .chart-point { fill: theme('colors.surface'); stroke: theme('colors.primary'); stroke-width: 2; transition: r 0.2s; }
+        .chart-point:hover { r: 6; cursor: pointer; }
+    </style>
+</head>
+<body class="font-body antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (WEB) -->
+<nav class="hidden lg:flex flex-col h-full p-4 gap-2 bg-surface-container dark:bg-surface-container-high h-screen w-64 docked left-0 border-r border-surface-container-highest z-40">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<div class="font-headline text-xl text-primary font-bold">EcoTrack</div>
+<div class="font-label text-xs text-on-surface-variant">Rooted in Nature</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-xl font-bold duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-label uppercase tracking-wide">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant hover:bg-primary/10 rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-label uppercase tracking-wide">Calculator</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant hover:bg-primary/10 rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">directions_run</span>
+<span class="font-label uppercase tracking-wide">Activities</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant hover:bg-primary/10 rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label uppercase tracking-wide">Challenges</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant hover:bg-primary/10 rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label uppercase tracking-wide">Badges</span>
+</a>
+</div>
+<div class="mt-auto pt-4 space-y-1 border-t border-surface-container-highest">
+<button class="w-full mb-4 py-3 bg-primary text-on-primary rounded-xl font-bold shadow-sm hover:bg-primary/90 transition-colors">Reduce Footprint</button>
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="font-label">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+<span class="font-label">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto relative bg-background">
+<!-- TopNavBar (WEB/MOBILE Header) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-6 py-4 w-full bg-surface/95 backdrop-blur-md shadow-sm border-b border-surface-container-low dark:border-surface-container-lowest">
+<div class="flex items-center gap-4 lg:hidden">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h1 class="text-2xl font-headline font-bold text-primary dark:text-primary-fixed-dim">EcoTrack</h1>
+</div>
+<div class="hidden lg:flex flex-1 items-center justify-between px-4">
+<div class="flex-1 max-w-md">
+<!-- Search placeholder -->
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex gap-6">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold font-body leading-relaxed transition-transform active:scale-95" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:bg-surface-variant/50 transition-colors font-body leading-relaxed pb-1 transition-transform active:scale-95" href="#">Calculator</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:bg-surface-variant/50 transition-colors font-body leading-relaxed pb-1 transition-transform active:scale-95" href="#">Community</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:bg-surface-variant/50 transition-colors font-body leading-relaxed pb-1 transition-transform active:scale-95" href="#">Goals</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block px-4 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-sm hover:bg-secondary-container/80 transition-colors">Track Activity</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User profile settings" class="w-full h-full object-cover" data-alt="A close up, well lit photograph of a smiling young professional woman with warm natural lighting, earthy green tones in the background, communicating approachability and environmental consciousness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnbCYWsCVwUFDBFBTP4TEZ4mwZ62qKzOTbAULJOW-Ry2ZUaGN_ZvubepaWpV0lxBP8ohbhVTONyJrbCzigku0G0Y3iah2zaLCtMdHLgvEwHX60PEahJy6Mskp5yfiI10DY6yuXAXk9VFvkCsaGB--eNUCBvmxyCg_hPdZALw6ie2IqKElknfrydgAAs18LUWY_kXl94okxge38dGvrhw4MAlhRgstdm5aPL5W8nc3mCLO_tqmF9Zq35WM-fiH3R9SMlscUG5KY0Vpk"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-6 md:p-8 lg:p-10 max-w-7xl mx-auto w-full pb-32 lg:pb-10 space-y-8">
+<!-- Welcome Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline text-3xl font-bold text-on-surface">Welcome back, Alex</h2>
+<p class="text-on-surface-variant mt-1 text-lg">You're making a measurable difference this week.</p>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary/90 transition-all shadow-sm active:scale-95 w-fit">
+<span class="material-symbols-outlined">add</span>
+                    Log New Action
+                </button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Impact Hero Card (Spans 2 cols on lg) -->
+<div class="col-span-1 md:col-span-2 lg:col-span-2 bg-surface-bright rounded-[2rem] p-8 soft-shadow relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+<!-- Decorative abstract shape -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface">Your Impact</h3>
+<p class="text-sm text-on-surface-variant mt-1">Total carbon saved this month</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="flex-1 flex items-center justify-center py-4">
+<!-- Circular Progress Visualization -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="text-4xl font-headline font-bold text-primary">124</span>
+<span class="text-sm text-on-surface-variant font-bold uppercase tracking-wider mt-1">kg CO₂</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm">trending_up</span>
+<span class="text-sm text-tertiary font-bold">+12% vs last month</span>
+</div>
+<button class="text-sm font-bold text-primary hover:text-primary/80 transition-colors">View Details</button>
+</div>
+</div>
+</div>
+<!-- Streak Card -->
+<div class="col-span-1 bg-surface-bright rounded-[2rem] p-8 soft-shadow flex flex-col justify-between min-h-[320px] bg-gradient-to-br from-surface-bright to-secondary-container/30">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold text-on-surface">Daily Streak</h3>
+<span class="material-symbols-outlined text-tertiary text-2xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<p class="text-sm text-on-surface-variant">Consistent logging</p>
+</div>
+<div class="flex flex-col items-center justify-center my-8">
+<span class="text-6xl font-headline font-black text-on-surface mb-2">14</span>
+<span class="text-lg font-bold text-on-surface-variant uppercase tracking-widest">Days</span>
+</div>
+<div class="flex justify-between items-center gap-2 mt-auto">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs font-bold">M</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs font-bold">T</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs font-bold">W</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-on-surface-variant text-xs font-bold">T</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-on-surface-variant text-xs font-bold">F</div>
+</div>
+</div>
+<!-- Recommended Actions (List) -->
+<div class="col-span-1 md:col-span-3 lg:col-span-1 bg-surface-bright rounded-[2rem] p-6 soft-shadow flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline text-lg font-bold text-on-surface">Next Steps</h3>
+<span class="material-symbols-outlined text-on-surface-variant">arrow_forward</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="group flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors cursor-pointer border border-transparent hover:border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center text-primary shrink-0 mt-1">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Switch to LED bulbs</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-2">Replace 5 incandescent bulbs to save ~40kg CO₂ annually.</p>
+</div>
+</div>
+<div class="group flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors cursor-pointer border border-transparent hover:border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/50 flex items-center justify-center text-tertiary shrink-0 mt-1">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Meatless Monday</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-2">Skip meat for one day to significantly reduce water usage.</p>
+</div>
+</div>
+<div class="group flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors cursor-pointer border border-transparent hover:border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant shrink-0 mt-1">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">directions_bike</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Cycle to work</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-2">Save approx 2kg CO₂ for every 10km cycled instead of driven.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Carbon Trend Chart (Full width bottom) -->
+<div class="col-span-1 md:col-span-3 lg:col-span-4 bg-surface-bright rounded-[2rem] p-8 soft-shadow">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface">Carbon Trend</h3>
+<p class="text-sm text-on-surface-variant mt-1">Last 30 days of emissions vs savings</p>
+</div>
+<div class="flex bg-surface-container-high rounded-lg p-1">
+<button class="px-4 py-1.5 text-sm font-bold bg-surface-bright text-primary rounded-md shadow-sm">30D</button>
+<button class="px-4 py-1.5 text-sm font-bold text-on-surface-variant hover:text-on-surface">90D</button>
+<button class="px-4 py-1.5 text-sm font-bold text-on-surface-variant hover:text-on-surface">1Y</button>
+</div>
+</div>
+<div class="w-full h-64 relative">
+<!-- Custom SVG Chart Illustration -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="theme('colors.primary')" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="theme('colors.primary')" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid -->
+<line class="chart-grid" x1="0" x2="800" y1="50" y2="50"></line>
+<line class="chart-grid" x1="0" x2="800" y1="100" y2="100"></line>
+<line class="chart-grid" x1="0" x2="800" y1="150" y2="150"></line>
+<!-- Area and Line -->
+<path class="chart-area" d="M0,180 L100,150 L200,160 L300,120 L400,130 L500,80 L600,90 L700,40 L800,50 L800,200 L0,200 Z"></path>
+<path class="chart-line" d="M0,180 L100,150 L200,160 L300,120 L400,130 L500,80 L600,90 L700,40 L800,50"></path>
+<!-- Points -->
+<circle class="chart-point" cx="100" cy="150" r="4"></circle>
+<circle class="chart-point" cx="200" cy="160" r="4"></circle>
+<circle class="chart-point" cx="300" cy="120" r="4"></circle>
+<circle class="chart-point" cx="400" cy="130" r="4"></circle>
+<circle class="chart-point" cx="500" cy="80" r="4"></circle>
+<circle class="chart-point" cx="600" cy="90" r="4"></circle>
+<circle class="chart-point" cx="700" cy="40" r="4"></circle>
+<circle class="chart-point" cx="800" cy="50" r="4"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-[-24px] left-0 w-full flex justify-between text-xs text-on-surface-variant font-bold px-2">
+<span>Oct 1</span>
+<span>Oct 8</span>
+<span>Oct 15</span>
+<span>Oct 22</span>
+<span>Today</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (MOBILE) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_20px_rgba(46,50,48,0.08)] bg-surface-container-highest dark:bg-surface-container-high pb-safe">
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed-variant rounded-2xl px-5 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label text-[10px] font-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label text-[10px] mt-1">Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label text-[10px] mt-1">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+<span class="font-label text-[10px] mt-1">Social</span>
+</a>
+</nav>
+<script>
+        // Simple script to animate progress ring on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const circle = document.querySelector('.progress-ring__circle');
+                if(circle) {
+                    // Set offset to represent 75% completion (251.2 * 0.25)
+                    circle.style.strokeDashoffset = '62.8'; 
+                }
+            }, 300);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Community Challenges</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "inverse-surface": "#2e3230",
+                            "surface-bright": "#faf6f0",
+                            "primary": "#4a7c59",
+                            "surface-variant": "#e4e0d8",
+                            "primary-container": "#78a886",
+                            "primary-fixed": "#c8e8d0",
+                            "inverse-on-surface": "#f5f0e8",
+                            "tertiary-fixed": "#f8e0a8",
+                            "on-error-container": "#690005",
+                            "on-secondary-fixed-variant": "#4a4538",
+                            "on-secondary-fixed": "#1e1a13",
+                            "on-secondary-container": "#5e5548",
+                            "secondary-container": "#f0e8db",
+                            "surface": "#faf6f0",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-fixed-dim": "#d4ccbf",
+                            "surface-container-low": "#f5f1ea",
+                            "outline": "#74796e",
+                            "surface-container": "#f0ece4",
+                            "background": "#faf6f0",
+                            "error": "#b83230",
+                            "on-tertiary-fixed-variant": "#554020",
+                            "tertiary-container": "#c4a66a",
+                            "on-primary": "#ffffff",
+                            "tertiary-fixed-dim": "#dcc48e",
+                            "on-primary-container": "#d8f0de",
+                            "on-surface": "#2e3230",
+                            "secondary-fixed": "#f0e8db",
+                            "on-tertiary-fixed": "#221a05",
+                            "error-container": "#ffdad8",
+                            "inverse-primary": "#8ecf9e",
+                            "surface-container-highest": "#e4e0d8",
+                            "tertiary": "#705c30",
+                            "on-error": "#ffffff",
+                            "on-tertiary-container": "#554020",
+                            "on-secondary": "#ffffff",
+                            "secondary": "#6b6358",
+                            "surface-container-high": "#eae6de",
+                            "surface-tint": "#4a7c59",
+                            "surface-dim": "#dbd7cf",
+                            "on-primary-fixed-variant": "#2a6038",
+                            "on-primary-fixed": "#002110",
+                            "primary-fixed-dim": "#8ecf9e",
+                            "on-tertiary": "#ffffff",
+                            "on-background": "#2e3230",
+                            "outline-variant": "#c4c8bc",
+                            "on-surface-variant": "#4a4e4a"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.5rem",
+                            "lg": "1rem",
+                            "xl": "1.5rem",
+                            "full": "9999px"
+                    },
+                    "fontFamily": {
+                            "headline": ["Literata", "serif"],
+                            "display": ["Literata", "serif"],
+                            "body": ["Nunito Sans", "sans-serif"],
+                            "label": ["Nunito Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: theme('fontFamily.body');
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: theme('fontFamily.headline');
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden lg:flex flex-col h-full p-4 gap-2 bg-surface-container h-screen w-64 docked left-0 sticky top-0 z-50">
+<div class="mb-8 px-4 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-primary text-3xl">eco</span>
+</div>
+<h1 class="font-headline text-xl text-primary font-bold">EcoTrack</h1>
+<p class="text-sm text-on-surface-variant">Rooted in Nature</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1 font-label uppercase tracking-wide text-sm">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">eco</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">calculate</span>
+                Calculator
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">directions_run</span>
+                Activities
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-container text-on-primary-container font-bold duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">groups</span>
+                Challenges
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">military_tech</span>
+                Badges
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-2">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold hover:opacity-90 transition-opacity">
+                Reduce Footprint
+            </button>
+<div class="border-t border-outline-variant/30 my-2"></div>
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out text-sm font-label uppercase tracking-wide" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-variant duration-200 ease-in-out text-sm font-label uppercase tracking-wide" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto pb-24 lg:pb-8">
+<!-- TopNavBar (Mobile) -->
+<header class="sticky top-0 z-40 lg:hidden flex justify-between items-center px-6 py-4 w-full bg-surface/95 backdrop-blur-md shadow-sm border-b-0">
+<div class="text-2xl font-headline font-bold text-primary">EcoTrack</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a young adult with a bright, welcoming smile, outdoors in a sunlit park with lush green trees. Warm, organic light mode aesthetic with earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmeE_dE1dN45-D5LB5RbwivfXK0crFFH9ATN5KNH0E-0iezM9JuHLXLgaDjiIKGvUtQe8FHI345BsHXuD8QU6RAUuw7YbsjOtee-WfAZ2VHcDVUrAiQ9KxRDI8zjwtPfdecL2mQOevaPlZ2RyTWAvP9lyfDUR-XPj7SYq2vi2AXq-NI8cEpKgox2SdBz8IzLfNuaA5RUSW5RD-7CiTyU6c3X6hESybUyVC_h4MtfcWuQbv5iY2UShEyZmTMTa_1wQUa5IdnK2xjsTV"/>
+</button>
+</header>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<!-- Page Header -->
+<section class="mb-12">
+<h2 class="text-4xl md:text-5xl font-headline text-on-surface mb-4">Community Challenges</h2>
+<p class="text-lg text-on-surface-variant max-w-2xl font-body leading-relaxed">Join forces with the community. Take on collective goals, track your progress, and celebrate sustainable living together.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,_auto)]">
+<!-- Featured Challenge (Large) -->
+<div class="md:col-span-8 md:row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A sweeping, vibrant photograph of a diverse group of people riding bicycles along a sun-dappled urban greenway. Lush trees frame the path, and the morning light creates a warm, optimistic atmosphere. Earthy and organic color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCX-W5HEFYwxGyjD-mu4qOVcbEBMZcVNS8ZMNY6R3lR-X53_dZkCF55pqbXgkOVrc8p2yghTmlp_JWqRfHPXXMBRAR2sudRALjU0TxGEXElpRDmdETpIYOiXHyW4Bmy9AKD3m02NCdDW-kbULk1zjDzCDSOQbakFtMK6rOUzDNmgMC6sMDWoop7-vnsbEZI1MC8YMb8mIY3yS1N8Yb-bEL2sWhILs1VvNiPfAVsdb7g3WL5WpDFFk9WbCQr3WblgWr2jh0LEz0LOPp6')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end h-full">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-tertiary text-on-tertiary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Featured</span>
+<span class="bg-surface/20 text-surface-bright backdrop-blur-md text-xs px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 3 days left
+                            </span>
+</div>
+<h3 class="text-3xl md:text-4xl font-headline text-surface-bright mb-2">Bike to Work 5-Day Challenge</h3>
+<p class="text-surface-bright/80 font-body mb-6 max-w-lg line-clamp-2">Swap your car keys for a helmet this week. Join 4,200 others reducing urban emissions.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-inverse-surface object-cover" data-alt="Small circular portrait of a smiling woman in a green park." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7xR6MUd-cOPr8ORh5jj2bkbvHmeqvGdXti33zKRkTjEbFskP7Ehqld-cbvOGgCt2LvuwgFPpm_j9zGvy-_xRyVczsMJTwYZPl4QtmyJz2AvbVWeeKwJQ35bOkhidQdMU68eCaNmJYYuuUp0B_4xyFF7du0p-T_TakB7BGZmBPHHQSfSOU1K23OzEQng7yVuYSyW2p_zA9FttpfmQp7ybY3Uz2_cdn3A_DAR3I3rrqBGUeJGkx2Ujwfm6lHXFkYGKh9lxX2zJH-jXS"/>
+<img class="w-10 h-10 rounded-full border-2 border-inverse-surface object-cover" data-alt="Small circular portrait of a man wearing a bicycle helmet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Z326zwT5H-3z3o4dQkyy1G8lon2kSSoC_AHMpw4O3Licq-LMH2hxkquK66KUi-yloWLQprZzX31ZhEEZyZ2B5EJzxQ-BdO2P7q3ikW4bTJpZeWdmt9Fhgmw8xmGVQRrgD-z5JvkENHRSBlnMKcxO6RIVhLaIuXVQapCQVQ4_yt_4Z16SOfb2foVZYqsF_RKiLM061vxF57GIbp9QxcYLFTqgfSjnt-V079J7-b0zosB_1a_POFqquvliHU46lW6deEjw285P5-Gq"/>
+<img class="w-10 h-10 rounded-full border-2 border-inverse-surface object-cover" data-alt="Small circular portrait of a person holding a reusable coffee cup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONBo1vy0xlPVgy7wK2sfgbb7_EiETKKissRjnH8Sun09hzUoKZh9iLwgriMqxO2vghCEY0lM3GATcNtfLBEvYWLrzGEymle60Wqpb2AFEXJGbIcQA6ulm3e_KEVTpAB_0quavfCZdey-kL1yPPcgFM3a2iQGBrNA26dv7-z8S_FkHe7Mj6zjr2K-e8pR65tHZ4jwsz_82iDDMRDXLUitXE7jwcOZvh6htZC5DBDrB4KyXGrJs8ix1eWo9PrLuyP31FLucLZmm_cf7"/>
+<div class="w-10 h-10 rounded-full border-2 border-inverse-surface bg-surface-variant flex items-center justify-center text-xs font-bold text-on-surface-variant">+4k</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-colors">Join Now</button>
+</div>
+</div>
+</div>
+<!-- Active Challenge 1 -->
+<div class="md:col-span-4 rounded-2xl bg-surface-bright p-6 flex flex-col border border-outline-variant/20 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">water_drop</span>
+</div>
+<span class="text-xs font-bold text-tertiary bg-tertiary-fixed px-2 py-1 rounded-md">Active</span>
+</div>
+<h4 class="font-headline text-xl text-on-surface mb-2">No-Plastic Week</h4>
+<p class="text-sm text-on-surface-variant mb-6 font-body flex-1">Eliminate single-use plastics from your daily routine for 7 days.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-sm text-on-surface-variant font-label">
+<span>Progress</span>
+<span class="font-bold text-primary">60%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+</div>
+<p class="text-xs text-on-surface-variant text-right mt-1">4/7 days completed</p>
+</div>
+</div>
+<!-- Active Challenge 2 -->
+<div class="md:col-span-4 rounded-2xl bg-surface-bright p-6 flex flex-col border border-outline-variant/20 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-2xl">restaurant</span>
+</div>
+</div>
+<h4 class="font-headline text-xl text-on-surface mb-2">Plant-Based Weekend</h4>
+<p class="text-sm text-on-surface-variant mb-6 font-body flex-1">Commit to vegan meals for Saturday and Sunday.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-sm text-on-surface-variant font-label">
+<span>Starts in</span>
+<span class="font-bold text-on-surface">2 days</span>
+</div>
+<button class="w-full py-2 border border-primary text-primary rounded-xl font-bold hover:bg-primary/5 transition-colors mt-2 text-sm">Opt In</button>
+</div>
+</div>
+<!-- Leaderboard (Tall) -->
+<div class="md:col-span-4 md:row-span-2 rounded-2xl bg-surface-bright p-6 border border-outline-variant/20 shadow-[0_4px_20px_rgba(46,50,48,0.06)] flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline text-xl text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">emoji_events</span> Friends Leaderboard
+                        </h3>
+<button class="text-sm text-primary hover:underline">View All</button>
+</div>
+<div class="flex-1 space-y-4">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-tertiary-fixed/30 border border-tertiary/10">
+<div class="w-6 text-center font-headline font-bold text-tertiary">1</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Headshot of a smiling young woman with curly hair, natural sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdF7X7e2dayThGI9NxK6jR6CvW4VvL6hNsF5pb8kquDLWS92bU1wW_K-V_m7t-4bDAk0SDcFN9NiclLXeVILmutsiOSX7-Cav9_Ck3a0-8SDKHYyN1RvlrntTAroDWqEFE3mTmg-vDbuAf1I85boQ8di2Bsk8JDIcSiNouwxer0DbelofcsoN-TQzLicGxEz9vUQ3kivqQYTF04gIC3BexUpYCaKhZDLX6WGkn6r-F34EBixsfVonnkgg96bpoHoM2ALTaX2zoT9UI"/>
+<div class="flex-1">
+<p class="font-bold text-sm text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">1,250 pts</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-xl">star</span>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors">
+<div class="w-6 text-center font-headline font-bold text-on-surface-variant">2</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a man with glasses standing near a tree, warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMTFnj02UYoZ9NJwC5CAd11F_oUr2vB1bggdR-9xRFUtwQZAaldB6ErmQ8mJMXZDb6-_Ga1UyE2DrHhhXu-mD9mldIocZtoxUPPRyY75M4a3C3C8GE7h0M-_hg38imgDCfBxoCzbzRa8Gd8Kf21kW_DGc4FfJVin5T12wVQB1N2fqtHe11RBUOZgVye6J9BCk1ETvsChFpjxRDiyoBMq7YhwsWI7-LjdtmX5wnypX-K-KhO1sapPmOEDH0X0QasCv6WYq3Kvx6gYs"/>
+<div class="flex-1">
+<p class="font-bold text-sm text-on-surface">David Chen</p>
+<p class="text-xs text-on-surface-variant">1,120 pts</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors">
+<div class="w-6 text-center font-headline font-bold text-on-surface-variant">3</div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">You</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-on-surface">You</p>
+<p class="text-xs text-on-surface-variant">980 pts</p>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center gap-4 p-3 rounded-xl hover:bg-surface-container transition-colors">
+<div class="w-6 text-center font-headline font-bold text-on-surface-variant">4</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Profile photo of a person wearing a sun hat outdoors, earthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnSfLRywcQp3aLa6JHsU_c3jmLX-sOO8UDX487qABNazxhTw1AVfa373vXE70mGKYIZXwwOUUq5wV_B9VAX5pkYsVZW9C7F2pmtrbLJ8c35g3a-INrgx_CQFJKI21yPWgSDF5BMK7_YchedEwmLhJ9psTvFQoIseo04jGhVWR1LFvRkP-MnZsy2LS1_c-oIeXjx6LUUwc1cmV-7vLhMbHuqUoZzMd9HLwka3q3n3JI-sb5S3eJEDKJ6rafnPCae8AJ8ojA42md04dv"/>
+<div class="flex-1">
+<p class="font-bold text-sm text-on-surface">Maya Patel</p>
+<p class="text-xs text-on-surface-variant">850 pts</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Success Stories Feed (Wide) -->
+<div class="md:col-span-8 rounded-2xl bg-surface-container-low p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<h3 class="font-headline text-2xl text-on-surface mb-6">Success Stories</h3>
+<div class="space-y-6">
+<!-- Story 1 -->
+<div class="flex flex-col sm:flex-row gap-4">
+<img class="w-full sm:w-48 h-32 object-cover rounded-xl shrink-0" data-alt="A beautifully arranged indoor urban garden with various potted plants and herbs near a sunny window. Warm, earthy, light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs0pDVjopO7aYJuQiDQ75M5NHLmrD4DHiSCDH-sMr-hsAPy0nqyDnVizO652BSrFuG-rKj1uKJ4YzeUHOB_0TuTtgYROU0iTH7t47h7epE0IjzCtiFHLO0Nb8MPL4RFQ4LfWt6selzyNvzlIuCRPhSFC3I0Sw9S6a3ZfcaDhnMJDKNasE7y0SEPEyW5wHauHFuP0RilhsLjTkDd5w-0YcDkcQvsjufycvVj0fKGnjdux8FJTFzvZO0Vx3b24RZcoNSohmkRSBGQLLO"/>
+<div>
+<div class="flex items-center gap-2 mb-2 text-xs text-on-surface-variant">
+<span class="bg-primary/10 text-primary px-2 py-1 rounded-md font-bold">Urban Gardening</span>
+<span>•</span>
+<span>2 hours ago</span>
+</div>
+<h4 class="font-headline text-lg text-on-surface mb-2 leading-tight">My First Balcony Harvest</h4>
+<p class="text-sm text-on-surface-variant font-body line-clamp-2 mb-3">After a month of nurturing, I finally harvested my first batch of cherry tomatoes and basil. The community tips on composting were a game changer!</p>
+<div class="flex items-center gap-4 text-xs font-label text-on-surface-variant">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">favorite</span> 124
+                                    </button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">chat_bubble</span> 18
+                                    </button>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20"></div>
+<!-- Story 2 -->
+<div class="flex flex-col sm:flex-row gap-4">
+<img class="w-full sm:w-48 h-32 object-cover rounded-xl shrink-0" data-alt="A sleek, modern compost bin sitting neatly in a bright, clean kitchen setting. Warm cream and earthy green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_jQ4kFnToQiHosQX1HQQCpkCLksmzLA3PKfGSSIOI7Y-0iS7k178XH7TQBzudSZPCNGym7fTl23IxawHIrJ0LMmnhdUUdWECZp8ILL7DnbpXKuf-KuKuzQ40aumE7VeTkyWao8x0AjR6Yzrj5yikXOKz46Zbs192CsggiHc2_aJuQsnjBtKYUQApZW_nHHP5fehFce3z8VKiuEXaL5eQNGlXVb1_tRRvONVeVs4FLpeQrjtWZUML33B9Olp5JgBiPbLZ_ezzw5P-"/>
+<div>
+<div class="flex items-center gap-2 mb-2 text-xs text-on-surface-variant">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-md font-bold">Zero Waste</span>
+<span>•</span>
+<span>Yesterday</span>
+</div>
+<h4 class="font-headline text-lg text-on-surface mb-2 leading-tight">A Month Without Trash Bags</h4>
+<p class="text-sm text-on-surface-variant font-body line-clamp-2 mb-3">Switching to a countertop composter reduced our household waste by almost half. Here's how we set up our system...</p>
+<div class="flex items-center gap-4 text-xs font-label text-on-surface-variant">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">favorite</span> 89
+                                    </button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">chat_bubble</span> 5
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface dark:bg-inverse-surface rounded-t-xl shadow-lg border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary active:scale-90 transition-all font-label text-xs" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary active:scale-90 transition-all font-label text-xs" href="#">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+            Track
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary active:scale-90 transition-all font-label text-xs" href="#">
+<span class="material-symbols-outlined mb-1">bar_chart</span>
+            Impact
+        </a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 active:scale-90 transition-all font-label text-xs" href="#">
+<span class="material-symbols-outlined mb-1">public</span>
+            Social
+        </a>
+</nav>
+</body></html>

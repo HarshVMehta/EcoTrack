@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - AI Insights Chatbot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Literata:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#f8e0a8",
+                        "surface-variant": "#e4e0d8",
+                        "on-primary-container": "#d8f0de",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#221a05",
+                        "surface-container-low": "#f5f1ea",
+                        "inverse-primary": "#8ecf9e",
+                        "on-secondary-fixed": "#1e1a13",
+                        "on-error": "#ffffff",
+                        "surface": "#faf6f0",
+                        "error": "#b83230",
+                        "tertiary-fixed-dim": "#dcc48e",
+                        "primary-fixed-dim": "#8ecf9e",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#d4ccbf",
+                        "primary-fixed": "#c8e8d0",
+                        "primary-container": "#78a886",
+                        "outline-variant": "#c4c8bc",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf6f0",
+                        "error-container": "#ffdad8",
+                        "inverse-on-surface": "#f5f0e8",
+                        "surface-container": "#f0ece4",
+                        "on-primary-fixed-variant": "#2a6038",
+                        "primary": "#4a7c59",
+                        "background": "#faf6f0",
+                        "surface-container-high": "#eae6de",
+                        "secondary": "#6b6358",
+                        "secondary-container": "#f0e8db",
+                        "secondary-fixed": "#f0e8db",
+                        "on-surface": "#2e3230",
+                        "on-secondary-container": "#5e5548",
+                        "surface-dim": "#dbd7cf",
+                        "tertiary-container": "#c4a66a",
+                        "on-surface-variant": "#4a4e4a",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#74796e",
+                        "on-tertiary-container": "#554020",
+                        "on-secondary-fixed-variant": "#4a4538",
+                        "tertiary": "#705c30",
+                        "surface-container-highest": "#e4e0d8",
+                        "surface-tint": "#4a7c59",
+                        "inverse-surface": "#2e3230",
+                        "on-background": "#2e3230",
+                        "on-tertiary-fixed-variant": "#554020",
+                        "on-primary-fixed": "#002110",
+                        "on-error-container": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Literata"],
+                        "display": ["Literata"],
+                        "body": ["Nunito Sans"],
+                        "label": ["Nunito Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Literata', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom Scrollbar for Chat Area */
+        .chat-scroll::-webkit-scrollbar { width: 6px; }
+        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
+        .chat-scroll::-webkit-scrollbar-thumb { background-color: theme('colors.outline-variant'); border-radius: 20px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background">
+<!-- SideNavBar (Hidden on Mobile, Flex on MD+) -->
+<nav class="hidden md:flex flex-col py-4 border-r border-outline-variant/30 bg-surface-container-low dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined fill">eco</span>
+</div>
+<div>
+<h1 class="font-headline text-xl text-primary font-semibold">EcoTrack</h1>
+<p class="font-body text-xs text-on-surface-variant">Sustainability Platform</p>
+</div>
+</div>
+<ul class="flex-1 space-y-1 font-body text-sm">
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">dashboard</span> Dashboard</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">calculate</span> Calculator</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">query_stats</span> Tracker</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">group</span> Community</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">psychology</span> AI Insights</a></li>
+<!-- Active Tab: Chatbot -->
+<li><a class="flex items-center gap-3 bg-primary-container dark:bg-primary-fixed text-on-primary-container dark:text-on-primary-fixed rounded-lg px-4 py-2 mx-2 transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined fill">smart_toy</span> Chatbot</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">flag</span> Goals</a></li>
+<li><a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined">leaderboard</span> Analytics</a></li>
+</ul>
+<div class="px-4 mt-auto">
+<button class="w-full bg-surface text-primary border border-primary/20 py-2 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">Upgrade to Pro</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopAppBar (Mobile & Web) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-6 bg-surface dark:bg-surface-dim shadow-sm w-full h-16">
+<div class="md:hidden flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm fill">eco</span>
+</div>
+<span class="font-headline text-xl font-bold text-primary dark:text-primary-fixed-dim">EcoTrack</span>
+</div>
+<div class="hidden md:flex items-center text-on-surface-variant font-headline text-lg">
+                Sustainability Assistant
+            </div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors active:scale-95 duration-200 transition-transform"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors active:scale-95 duration-200 transition-transform"><span class="material-symbols-outlined">settings</span></button>
+<img alt="User profile photo" class="w-8 h-8 rounded-full object-cover border border-outline-variant/30" data-alt="A smiling diverse person in a naturally lit, earth-toned room with green plants in the background. The lighting is warm and organic, suggesting approachability and eco-consciousness. Professional headshot composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZabqK1Lj5Q5oAFW8FN4yTGDll5Dvkwhn67kQLji6tJmb2CA9kNIM_dUR-SrLUP79HsEi9uN8tLOpULh6lDG7D8pvX60bvjY7uc5aJAyMVRnHt5zzuWgTW51Q75kOwsJfYOiP-9LT4I9RNJeMwnOjZEXm5rSgj6FNVhXDq6ISOjs6MlrSRU2BMHxZYynj5sFxAe2ItIILfQD96JPp4y0rRVh3_8O80dvYk5pQmKvzZ0EhLmbTTcAXIujCv32SKBm1_rNYxbyDAKANZ"/>
+</div>
+</header>
+<!-- Chat Container -->
+<main class="flex-1 overflow-hidden flex flex-col relative bg-surface-bright">
+<!-- Atmospheric Background Element -->
+<div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, theme('colors.primary') 0%, transparent 70%);"></div>
+<!-- Chat Messages Area -->
+<div class="flex-1 overflow-y-auto chat-scroll p-4 md:p-8 z-10 relative space-y-6 flex flex-col" id="chatContainer">
+<!-- Welcome Message / System -->
+<div class="flex justify-center mb-8">
+<div class="bg-surface-container-low border border-outline-variant/30 text-on-surface-variant px-4 py-2 rounded-full text-sm font-body shadow-[0_4px_20px_rgba(46,50,48,0.02)]">
+                        Chat started today at 10:42 AM
+                    </div>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4 max-w-3xl">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl rounded-tl-sm shadow-[0_4px_20px_rgba(46,50,48,0.04)] border border-surface-container-low text-on-surface font-body leading-relaxed text-[15px]">
+<p class="mb-3">Hello! I'm your EcoTrack Sustainability Assistant. 🌱</p>
+<p>I can help you analyze your carbon footprint, suggest ways to reduce waste, or provide personalized insights based on your recent activity. How can we make a positive impact today?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-4 max-w-3xl self-end flex-row-reverse">
+<img alt="User" class="w-10 h-10 rounded-full object-cover border border-outline-variant/30 flex-shrink-0" data-alt="A smiling diverse person in a naturally lit, earth-toned room with green plants in the background. The lighting is warm and organic, suggesting approachability and eco-consciousness. Professional headshot composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtPdL1Qg2e_Zv8PIRuKuTRioj5Hn2khS7Lzu4v2LusONEQJ8pd5AkpD_zVhv_hwCbM8pKcJCmDPvgjrHfiWzgJgrVkoNlt5ijLmwuzrAEj2eLNglVVoMLwAbZTIX2CEjbLNM4mRI2VOhveY2GE3muWOCrFw9fHCR22iuS2kAEbrxmWtAhy73TXH_PSB35DtU0VE7vcfazRz4q0xF_aK75a_mohtyYeWYxeS6tFYwiSYLZ3PuOr0UJT5BuOT5RaLR3q5Kf9u2kSGp9x"/>
+<div class="bg-primary text-on-primary p-5 rounded-2xl rounded-tr-sm shadow-[0_4px_20px_rgba(46,50,48,0.06)] font-body leading-relaxed text-[15px]">
+<p>I noticed my transport emissions were higher this week. What are some realistic alternatives for my daily commute?</p>
+</div>
+</div>
+<!-- AI Message with Guidance Snippet -->
+<div class="flex items-start gap-4 max-w-3xl">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl rounded-tl-sm shadow-[0_4px_20px_rgba(46,50,48,0.04)] border border-surface-container-low text-on-surface font-body leading-relaxed text-[15px] w-full">
+<p class="mb-4">I see that! Your transport emissions spiked by 12% compared to last week. Here are a few personalized suggestions based on your typical 15km commute:</p>
+<!-- Guidance Snippet Card -->
+<div class="bg-surface-container-low rounded-xl p-4 mb-3 border border-outline-variant/20 hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-3 mb-2">
+<div class="bg-tertiary-container text-on-tertiary-container w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">directions_bike</span>
+</div>
+<h4 class="font-headline font-semibold text-on-surface">E-Bike Commuting</h4>
+<span class="ml-auto bg-primary-container/50 text-primary-fixed-variant text-xs font-bold px-2 py-1 rounded-full">-60% CO2</span>
+</div>
+<p class="text-sm text-on-surface-variant">Switching to an e-bike twice a week could save roughly 14kg of CO2 monthly, plus it's a great way to enjoy the weather.</p>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-3 mb-2">
+<div class="bg-secondary-container text-on-secondary-container w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">commute</span>
+</div>
+<h4 class="font-headline font-semibold text-on-surface">Transit Route Optimization</h4>
+<span class="ml-auto bg-primary-container/50 text-primary-fixed-variant text-xs font-bold px-2 py-1 rounded-full">-45% CO2</span>
+</div>
+<p class="text-sm text-on-surface-variant">The new Express Bus route #42 now stops near your office. It takes roughly the same time as driving during rush hour.</p>
+</div>
+</div>
+</div>
+<!-- AI typing indicator (hidden by default, shown for realism) -->
+<div class="flex items-start gap-4 max-w-3xl opacity-60">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 scale-90">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+</div>
+<div class="bg-surface-container-lowest py-3 px-4 rounded-2xl rounded-tl-sm border border-surface-container-low flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 0ms"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 150ms"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 300ms"></div>
+</div>
+</div>
+</div>
+<!-- Input Area & Suggestions -->
+<div class="bg-surface-container-lowest border-t border-outline-variant/20 p-4 md:p-6 z-20">
+<div class="max-w-4xl mx-auto">
+<!-- Quick Reply Chips -->
+<div class="flex flex-wrap gap-2 mb-4">
+<button class="bg-surface border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-high hover:text-primary hover:border-primary/40 text-sm font-body px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-base">recycling</span> How can I reduce waste?
+                        </button>
+<button class="bg-surface border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-high hover:text-primary hover:border-primary/40 text-sm font-body px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-base">energy_savings_leaf</span> Analyze home energy
+                        </button>
+<button class="bg-surface border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-high hover:text-primary hover:border-primary/40 text-sm font-body px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-base">set_meal</span> Plant-based recipes
+                        </button>
+</div>
+<!-- Input Box -->
+<div class="relative flex items-end gap-2 bg-surface rounded-2xl border border-outline-variant/40 p-2 shadow-[0_4px_20px_rgba(46,50,48,0.03)] focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<button class="p-3 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-xl transition-colors shrink-0">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-2 font-body text-on-surface placeholder-on-surface-variant/60 max-h-32" placeholder="Ask about your eco-goals..." rows="1"></textarea>
+<button class="p-3 bg-primary text-on-primary hover:bg-primary/90 rounded-xl transition-colors shrink-0 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="text-center mt-2 text-xs text-on-surface-variant/60 font-body">
+                        AI Assistant can make mistakes. Consider verifying important sustainability data.
+                    </div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Auto-resize textarea
+        const tx = document.querySelector('textarea');
+        tx.setAttribute('style', 'height:' + (tx.scrollHeight) + 'px;overflow-y:hidden;');
+        tx.addEventListener("input", OnInput, false);
+
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
+
+        // Scroll to bottom of chat
+        const chatContainer = document.getElementById('chatContainer');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    </script>
+</body></html>

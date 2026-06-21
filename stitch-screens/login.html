@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2e3230",
+                    "primary-container": "#78a886",
+                    "tertiary": "#705c30",
+                    "on-secondary-fixed": "#1e1a13",
+                    "inverse-on-surface": "#f5f0e8",
+                    "surface-bright": "#faf6f0",
+                    "surface-tint": "#4a7c59",
+                    "primary": "#4a7c59",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#8ecf9e",
+                    "background": "#faf6f0",
+                    "surface-container-highest": "#e4e0d8",
+                    "on-tertiary-container": "#554020",
+                    "error": "#b83230",
+                    "error-container": "#ffdad8",
+                    "secondary": "#6b6358",
+                    "on-primary-fixed": "#002110",
+                    "on-primary-container": "#d8f0de",
+                    "tertiary-container": "#c4a66a",
+                    "on-error": "#ffffff",
+                    "outline": "#74796e",
+                    "on-tertiary-fixed": "#221a05",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#eae6de",
+                    "primary-fixed": "#c8e8d0",
+                    "on-secondary-fixed-variant": "#4a4538",
+                    "secondary-fixed": "#f0e8db",
+                    "on-error-container": "#690005",
+                    "surface": "#faf6f0",
+                    "on-surface": "#2e3230",
+                    "surface-container-low": "#f5f1ea",
+                    "surface-variant": "#e4e0d8",
+                    "on-primary-fixed-variant": "#2a6038",
+                    "secondary-container": "#f0e8db",
+                    "tertiary-fixed-dim": "#dcc48e",
+                    "on-background": "#2e3230",
+                    "secondary-fixed-dim": "#d4ccbf",
+                    "on-surface-variant": "#4a4e4a",
+                    "surface-dim": "#dbd7cf",
+                    "on-secondary-container": "#5e5548",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#f8e0a8",
+                    "surface-container": "#f0ece4",
+                    "on-tertiary-fixed-variant": "#554020",
+                    "inverse-primary": "#8ecf9e",
+                    "outline-variant": "#c4c8bc",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Literata"
+                    ],
+                    "display": [
+                            "Literata"
+                    ],
+                    "body": [
+                            "Nunito Sans"
+                    ],
+                    "label": [
+                            "Nunito Sans"
+                    ]
+            },
+            "fontSize": {}
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Literata', serif;
+        }
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+    </style>
+</head>
+<body class="min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex flex-col md:flex-row w-full h-screen">
+<!-- Left Side: Image/Illustration -->
+<div class="hidden md:flex md:w-1/2 lg:w-[55%] relative overflow-hidden bg-surface-container-high rounded-r-3xl md:rounded-r-[2.5rem] shadow-[0_4px_20px_rgba(46,50,48,0.06)] z-10">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A serene, sweeping view of a misty, ancient forest canopy viewed from above at dawn. The scene is lush and organic, dominated by earthy greens and warm golden sunlight filtering through the mist, embodying the Terra design aesthetic. The mood is calm, rooted, and inviting, with soft natural textures and a sense of fresh beginnings, avoiding any clinical or artificial elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsaWmZS-uyEGlCVhUDEbmvK7CjFYVmq2mqBtOcEeXCsX6G1g7EyjuJJqmlqKiJHe2Y5AF4feuQIYN9x9ZMIlTlTD0q_nMK6TCN0O2P8DgQKQcgK4zJAwAHnO1qncxI9oC_IZg_JV0EyR5kuCWCzFYU-HeG9LLHDPnU81Fqg_01M-f0Ujq0W3bndeMCDtVccTIWEg7IYOcxapliGZ4wVHnDw3nPeAcJ1duhMG9xPaK6wkHjzowvANRjCruZmnKuNu2iMmoYN-pmk2q5')"></div>
+<!-- Decorative Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+<div class="absolute bottom-12 left-12 right-12 z-20 text-surface-bright">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-4xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h2 class="font-headline text-3xl font-bold tracking-tight">EcoTrack</h2>
+</div>
+<p class="font-body text-xl font-light leading-relaxed max-w-lg opacity-90">Rooted in nature, designed for community. Join us in making a sustainable impact, one step at a time.</p>
+</div>
+</div>
+<!-- Right Side: Auth Form -->
+<div class="flex-1 flex items-center justify-center p-6 md:p-12 lg:p-24 bg-surface-bright relative z-0">
+<!-- Mobile Logo -->
+<div class="absolute top-8 left-8 md:hidden flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-headline font-bold text-xl text-primary">EcoTrack</span>
+</div>
+<div class="w-full max-w-md">
+<div class="mb-10 text-center md:text-left">
+<h1 class="font-headline text-4xl md:text-5xl font-bold text-on-surface mb-3 tracking-tight">Welcome Back</h1>
+<p class="font-body text-on-surface-variant text-lg">Please enter your details to sign in.</p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface ml-1" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">mail</span>
+</div>
+<input autocomplete="email" class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-lowest border border-outline-variant/60 rounded-xl text-on-surface placeholder-outline focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200 shadow-sm" id="email" name="email" placeholder="hello@example.com" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface ml-1" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full pl-11 pr-12 py-3.5 bg-surface-container-lowest border border-outline-variant/60 rounded-xl text-on-surface placeholder-outline focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200 shadow-sm" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-outline">visibility_off</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center">
+<input class="h-5 w-5 text-primary focus:ring-primary border-outline-variant rounded bg-surface-container-lowest transition-colors cursor-pointer" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-3 block text-sm text-on-surface-variant cursor-pointer" for="remember-me">
+                                Remember me
+                            </label>
+</div>
+<div class="text-sm">
+<a class="font-semibold text-primary hover:text-primary-fixed-dim transition-colors" href="#">
+                                Forgot password?
+                            </a>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-lg font-bold text-on-primary bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-surface-bright active:scale-[0.98] transition-all duration-200" type="submit">
+                            Sign In
+                        </button>
+</div>
+</form>
+<div class="mt-8">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/50"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-surface-bright text-on-surface-variant">Or continue with</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-4">
+<a class="w-full inline-flex justify-center py-3 px-4 border border-outline-variant/60 rounded-xl shadow-sm bg-surface-container-lowest text-sm font-semibold text-on-surface hover:bg-surface-container-low transition-colors items-center gap-2 group" href="#">
+<svg class="w-5 h-5 group-hover:scale-105 transition-transform" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                            Google
+                        </a>
+<a class="w-full inline-flex justify-center py-3 px-4 border border-outline-variant/60 rounded-xl shadow-sm bg-surface-container-lowest text-sm font-semibold text-on-surface hover:bg-surface-container-low transition-colors items-center gap-2 group" href="#">
+<svg class="w-5 h-5 fill-current text-on-surface group-hover:scale-105 transition-transform" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05 1.8-3.08 1.8-1.08 0-1.46-.66-2.73-.66-1.25 0-1.68.64-2.71.64-1.08 0-2.05-.82-3.1-1.85-1.41-1.37-2.78-3.95-2.78-6.17 0-2.88 1.77-4.4 3.73-4.4 1.05 0 1.95.53 2.68.53.71 0 1.75-.6 3-.6 1.34 0 2.39.46 3.15 1.11-2.08 1.13-1.74 3.84.42 4.87-.58 1.7-1.41 3.33-2.6 4.75zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.3 2.4-2.06 4.5-3.74 4.25z"></path>
+</svg>
+                            Apple
+                        </a>
+</div>
+</div>
+<p class="mt-10 text-center text-sm text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="font-bold text-primary hover:text-primary-fixed-dim transition-colors ml-1" href="#">
+                        Sign up for free
+                    </a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

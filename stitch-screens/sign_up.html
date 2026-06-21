@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Join EcoTrack - Sign Up</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400..800&amp;family=Nunito+Sans:opsz,wght@6..12,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2e3230",
+                    "primary-container": "#78a886",
+                    "tertiary": "#705c30",
+                    "on-secondary-fixed": "#1e1a13",
+                    "inverse-on-surface": "#f5f0e8",
+                    "surface-bright": "#faf6f0",
+                    "surface-tint": "#4a7c59",
+                    "primary": "#4a7c59",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#8ecf9e",
+                    "background": "#faf6f0",
+                    "surface-container-highest": "#e4e0d8",
+                    "on-tertiary-container": "#554020",
+                    "error": "#b83230",
+                    "error-container": "#ffdad8",
+                    "secondary": "#6b6358",
+                    "on-primary-fixed": "#002110",
+                    "on-primary-container": "#d8f0de",
+                    "tertiary-container": "#c4a66a",
+                    "on-error": "#ffffff",
+                    "outline": "#74796e",
+                    "on-tertiary-fixed": "#221a05",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#eae6de",
+                    "primary-fixed": "#c8e8d0",
+                    "on-secondary-fixed-variant": "#4a4538",
+                    "secondary-fixed": "#f0e8db",
+                    "on-error-container": "#690005",
+                    "surface": "#faf6f0",
+                    "on-surface": "#2e3230",
+                    "surface-container-low": "#f5f1ea",
+                    "surface-variant": "#e4e0d8",
+                    "on-primary-fixed-variant": "#2a6038",
+                    "secondary-container": "#f0e8db",
+                    "tertiary-fixed-dim": "#dcc48e",
+                    "on-background": "#2e3230",
+                    "secondary-fixed-dim": "#d4ccbf",
+                    "on-surface-variant": "#4a4e4a",
+                    "surface-dim": "#dbd7cf",
+                    "on-secondary-container": "#5e5548",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#f8e0a8",
+                    "surface-container": "#f0ece4",
+                    "on-tertiary-fixed-variant": "#554020",
+                    "inverse-primary": "#8ecf9e",
+                    "outline-variant": "#c4c8bc",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Literata"
+                    ],
+                    "display": [
+                            "Literata"
+                    ],
+                    "body": [
+                            "Nunito Sans"
+                    ],
+                    "label": [
+                            "Nunito Sans"
+                    ]
+            },
+            "fontSize": {}
+        },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center font-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Note: TopAppBar and SideNavBar are suppressed for this transactional sign-up page as per the Shell Visibility & Relevance rules. -->
+<div class="flex flex-col md:flex-row w-full min-h-screen">
+<!-- Illustration/Image Side (Left on Desktop, Top on Mobile) -->
+<div class="w-full md:w-1/2 relative bg-surface-container-high hidden md:block">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover rounded-none md:rounded-r-[2rem] shadow-[0_4px_20px_rgba(46,50,48,0.06)]" data-alt="A warm, inviting digital illustration of a diverse group of people planting trees in a sunlit meadow. The scene uses earthy greens, warm creams, and amber accents typical of a natural, organic 'Terra' design aesthetic. Soft, natural lighting creates a calm, grounding atmosphere, reflecting a human-centric approach to environmental conservation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXuZ_AW27NDQfiQ3o9L3V510oRtaxufKdDGkJoeMPl8n6Z_JdcHBXXZWy-6AxIGB_GcFQTCQGEYNbvzMFZeIROmxdVBnBYwAghHqTPCqVplO3oT7wMkjoU3Ff8JMtMRdFWY6BF_6BYiKQfPdLfiiA70vyAOAETyMWulCP-0zEufmq1t4uVFVJhKaUXOj7zdBsw_-lFWtKSAfMury4KyNOpOTy7PLqACXRB0vhJBjw-RVSEBa4BfJeaM1CVOo--ofHj6ln0Fieb2GeG"/>
+</div>
+<!-- Overlay for brand anchoring -->
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply md:rounded-r-[2rem]"></div>
+<div class="absolute top-8 left-8 z-10 flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-headline font-bold text-3xl text-surface-bright drop-shadow-md">EcoTrack</span>
+</div>
+</div>
+<!-- Form Side (Right on Desktop, Full on Mobile) -->
+<div class="w-full md:w-1/2 flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 bg-surface-bright overflow-y-auto">
+<div class="max-w-md w-full mx-auto space-y-8">
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center justify-center gap-3 mb-8">
+<span class="material-symbols-outlined text-4xl text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-headline font-bold text-3xl text-primary">EcoTrack</span>
+</div>
+<div class="text-left">
+<h1 class="font-headline text-4xl font-bold text-on-surface mb-2">Create Your Impact</h1>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed">Join our community and start growing a better tomorrow, today.</p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<div>
+<label class="block text-sm font-bold font-label text-on-surface mb-2" for="name">Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<input autocomplete="name" class="block w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" id="name" name="name" placeholder="Jane Doe" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold font-label text-on-surface mb-2" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">mail</span>
+</div>
+<input autocomplete="email" class="block w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" id="email" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold font-label text-on-surface mb-2" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<input autocomplete="new-password" class="block w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<p class="mt-2 text-sm text-on-surface-variant">Must be at least 8 characters long.</p>
+</div>
+<div class="flex items-start">
+<div class="flex items-center h-5">
+<input class="w-5 h-5 bg-surface-container-lowest border-outline-variant rounded text-primary focus:ring-primary" id="terms" name="terms" required="" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-body text-on-surface-variant" for="terms">
+                                I agree to the <a class="font-bold text-primary hover:text-primary-fixed-dim transition-colors" href="#">Terms and Conditions</a> and <a class="font-bold text-primary hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>.
+                            </label>
+</div>
+</div>
+<div>
+<button class="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] text-lg font-bold font-label text-on-primary bg-primary hover:bg-surface-tint focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 active:scale-[0.98]" type="submit">
+                            Join EcoTrack
+                        </button>
+</div>
+</form>
+<div class="mt-8 relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/50"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="px-4 bg-surface-bright text-sm font-body text-on-surface-variant">Or</span>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="font-body text-on-surface-variant text-base">
+                        Already have an account? 
+                        <a class="font-bold font-label text-primary hover:text-primary-fixed-dim transition-colors ml-1" href="#">Log In</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

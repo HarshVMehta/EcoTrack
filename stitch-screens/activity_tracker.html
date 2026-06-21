@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Activity Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-surface": "#2e3230",
+                        "surface-bright": "#faf6f0",
+                        "primary": "#4a7c59",
+                        "surface-variant": "#e4e0d8",
+                        "primary-container": "#78a886",
+                        "primary-fixed": "#c8e8d0",
+                        "inverse-on-surface": "#f5f0e8",
+                        "tertiary-fixed": "#f8e0a8",
+                        "on-error-container": "#690005",
+                        "on-secondary-fixed-variant": "#4a4538",
+                        "on-secondary-fixed": "#1e1a13",
+                        "on-secondary-container": "#5e5548",
+                        "secondary-container": "#f0e8db",
+                        "surface": "#faf6f0",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#d4ccbf",
+                        "surface-container-low": "#f5f1ea",
+                        "outline": "#74796e",
+                        "surface-container": "#f0ece4",
+                        "background": "#faf6f0",
+                        "error": "#b83230",
+                        "on-tertiary-fixed-variant": "#554020",
+                        "tertiary-container": "#c4a66a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc48e",
+                        "on-primary-container": "#d8f0de",
+                        "on-surface": "#2e3230",
+                        "secondary-fixed": "#f0e8db",
+                        "on-tertiary-fixed": "#221a05",
+                        "error-container": "#ffdad8",
+                        "inverse-primary": "#8ecf9e",
+                        "surface-container-highest": "#e4e0d8",
+                        "tertiary": "#705c30",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#554020",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#6b6358",
+                        "surface-container-high": "#eae6de",
+                        "surface-tint": "#4a7c59",
+                        "surface-dim": "#dbd7cf",
+                        "on-primary-fixed-variant": "#2a6038",
+                        "on-primary-fixed": "#002110",
+                        "primary-fixed-dim": "#8ecf9e",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#2e3230",
+                        "outline-variant": "#c4c8bc",
+                        "on-surface-variant": "#4a4e4a"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "1rem",
+                        xl: "1.5rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Literata", "serif"],
+                        display: ["Literata", "serif"],
+                        body: ["Nunito Sans", "sans-serif"],
+                        label: ["Nunito Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Literata', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+        
+        /* Soft shadows */
+        .shadow-soft { box-shadow: 0 4px 20px rgba(46, 50, 48, 0.06); }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-surface-container dark:bg-surface-container-high h-screen w-64 flex-col p-4 gap-2 hidden lg:flex shrink-0 shadow-soft sticky top-0 border-r border-outline-variant/30">
+<!-- Header -->
+<div class="mb-8 px-4 py-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined filled">eco</span>
+</div>
+<div>
+<h1 class="font-headline text-xl text-primary font-bold tracking-tight">EcoTrack</h1>
+<p class="font-label text-xs text-on-surface-variant">Rooted in Nature</p>
+</div>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm font-bold bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined filled">directions_run</span>
+                Activities
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 dark:hover:bg-primary-fixed/10 transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">eco</span>
+                Overview
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 dark:hover:bg-primary-fixed/10 transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">calculate</span>
+                Calculator
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 dark:hover:bg-primary-fixed/10 transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">groups</span>
+                Challenges
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 dark:hover:bg-primary-fixed/10 transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">military_tech</span>
+                Badges
+            </a>
+</div>
+<!-- CTA -->
+<div class="mt-auto mb-6 px-4">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-label uppercase tracking-wide text-sm font-bold shadow-soft hover:bg-primary/90 transition-colors duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">nature</span>
+                Reduce Footprint
+            </button>
+</div>
+<!-- Footer Navigation -->
+<div class="border-t border-outline-variant/30 pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl font-label uppercase tracking-wide text-sm text-on-surface-variant hover:bg-primary/10 transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">help</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto w-full relative">
+<!-- Mobile TopAppBar (from JSON but adapted for context) -->
+<header class="lg:hidden sticky top-0 z-40 bg-surface/95 backdrop-blur-md px-6 py-4 flex justify-between items-center shadow-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl filled">eco</span>
+<h1 class="text-xl font-headline font-bold text-primary">EcoTrack</h1>
+</div>
+<button class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30 focus:outline-none focus:ring-2 focus:ring-primary">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A portrait of a young professional smiling naturally in a bright, sunlit room. The image features a soft, warm earthy color palette with subtle green accents in the background, fitting the Terra organic design aesthetic. The lighting is soft and flattering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAztqaf7XdwEqP4YFHT6ltUtGOm1WwwSthuL5LfPRWGMuQjMnfYyW_rKJhT6_UdfFIXEsFPJAHVKp9BjAHWG7PrqIc3_7nugBFLHeqlFwgHUTgGOjrCUKuQIcF_v-U_qSet1lRJsnwFkdZVhQ01q33wkZpb30GYqIgXz_icwm5GpnCd0EACYnhA8UuHwxoATH4hhaLiJ5-6iLx3z3-eFGY9YiiQkIhOJyvVHl7pI3ZIdrRiO6L7jnK6ZlabLLzxhaFPLwMGrY-_EjZI"/>
+</button>
+</header>
+<div class="max-w-6xl mx-auto px-6 lg:px-12 py-8 lg:py-12 space-y-12">
+<!-- Page Header & Summary -->
+<section class="flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-end">
+<div>
+<h2 class="font-headline text-3xl lg:text-4xl text-on-surface mb-2 tracking-tight">Today's Impact</h2>
+<p class="font-body text-on-surface-variant text-lg max-w-2xl leading-relaxed">Log your daily sustainable choices and watch your positive environmental impact grow.</p>
+</div>
+<div class="flex gap-4 w-full lg:w-auto">
+<!-- Points Summary -->
+<div class="bg-surface-bright border border-outline-variant/30 rounded-xl p-5 flex items-center gap-4 shadow-soft flex-1 lg:flex-none min-w-[160px]">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined filled text-2xl">star</span>
+</div>
+<div>
+<p class="font-label text-sm text-on-surface-variant">Points Earned</p>
+<p class="font-headline text-2xl font-bold text-on-surface">145</p>
+</div>
+</div>
+<!-- Offset Summary -->
+<div class="bg-surface-bright border border-outline-variant/30 rounded-xl p-5 flex items-center gap-4 shadow-soft flex-1 lg:flex-none min-w-[160px]">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined filled text-2xl">co2</span>
+</div>
+<div>
+<p class="font-label text-sm text-on-surface-variant">Carbon Offset</p>
+<p class="font-headline text-2xl font-bold text-on-surface">2.4<span class="text-lg font-body font-normal text-on-surface-variant ml-1">kg</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Log Grid (Bento Style) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline text-2xl text-on-surface">Quick Check-in</h3>
+<button class="text-primary font-label text-sm hover:underline flex items-center gap-1">
+                        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Transport Card -->
+<div class="bg-surface-container-low rounded-2xl p-6 shadow-soft border border-surface-container-highest hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-bright flex items-center justify-center text-primary shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-2xl">pedal_bike</span>
+</div>
+<span class="px-3 py-1 bg-primary-container/30 text-on-primary-fixed-variant rounded-full font-label text-xs font-bold">+15 pts</span>
+</div>
+<h4 class="font-headline text-xl text-on-surface mb-2 relative z-10">Transport</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6 line-clamp-2 relative z-10">Bike, walk, public transit, or carpool.</p>
+<div class="flex flex-col gap-2 relative z-10">
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-primary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Biked to Work</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-primary transition-colors">add</span>
+</button>
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-primary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Public Transit</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-primary transition-colors">add</span>
+</button>
+</div>
+</div>
+<!-- Energy Card -->
+<div class="bg-surface-container-low rounded-2xl p-6 shadow-soft border border-surface-container-highest hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-bright flex items-center justify-center text-tertiary shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-2xl">lightbulb</span>
+</div>
+<span class="px-3 py-1 bg-tertiary-container/30 text-on-tertiary-fixed-variant rounded-full font-label text-xs font-bold">+10 pts</span>
+</div>
+<h4 class="font-headline text-xl text-on-surface mb-2 relative z-10">Energy</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6 line-clamp-2 relative z-10">Lowered thermostat, natural light, line dried clothes.</p>
+<div class="flex flex-col gap-2 relative z-10">
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-tertiary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Lowered Heat</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-tertiary transition-colors">add</span>
+</button>
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-tertiary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Unplugged Devices</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-tertiary transition-colors">add</span>
+</button>
+</div>
+</div>
+<!-- Food Card -->
+<div class="bg-surface-container-low rounded-2xl p-6 shadow-soft border border-surface-container-highest hover:shadow-md transition-shadow relative overflow-hidden group lg:col-span-2">
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex flex-col lg:flex-row gap-6 h-full relative z-10">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-surface-bright flex items-center justify-center text-primary shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-2xl">restaurant</span>
+</div>
+<span class="px-3 py-1 bg-primary-container/30 text-on-primary-fixed-variant rounded-full font-label text-xs font-bold">+20 pts</span>
+</div>
+<h4 class="font-headline text-xl text-on-surface mb-2">Food &amp; Dining</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6">Plant-based meals, local produce, zero food waste.</p>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-2">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-label text-sm font-bold shadow-soft hover:bg-primary/90 transition-colors flex justify-between items-center">
+<span>Plant-Based Meal</span>
+<span class="material-symbols-outlined text-sm">done</span>
+</button>
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-primary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Bought Local Produce</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-primary transition-colors">add</span>
+</button>
+<button class="w-full py-2.5 px-4 bg-surface-bright text-on-surface border border-outline-variant/40 rounded-xl font-label text-sm hover:border-primary/50 hover:bg-surface-container transition-colors flex justify-between items-center group/btn">
+<span>Zero Food Waste Today</span>
+<span class="material-symbols-outlined text-sm text-outline group-hover/btn:text-primary transition-colors">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Entry Section -->
+<section class="bg-surface-container-high rounded-2xl p-8 border border-outline-variant/20 shadow-soft">
+<div class="max-w-2xl">
+<h3 class="font-headline text-2xl text-on-surface mb-2">Log Custom Activity</h3>
+<p class="font-body text-on-surface-variant mb-6">Did something else green today? Tell us about it.</p>
+<form class="space-y-4">
+<div>
+<label class="block font-label text-sm font-bold text-on-surface mb-1" for="activity_name">Activity Description</label>
+<input class="w-full rounded-xl bg-surface-bright border-outline-variant/50 text-on-surface focus:ring-primary focus:border-primary py-3 px-4 placeholder:text-outline-variant" id="activity_name" placeholder="e.g. Started a compost bin" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label text-sm font-bold text-on-surface mb-1" for="category">Category</label>
+<select class="w-full rounded-xl bg-surface-bright border-outline-variant/50 text-on-surface focus:ring-primary focus:border-primary py-3 px-4" id="category">
+<option>Waste &amp; Recycling</option>
+<option>Water Conservation</option>
+<option>Community Action</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label text-sm font-bold text-on-surface mb-1" for="duration">Impact Level</label>
+<select class="w-full rounded-xl bg-surface-bright border-outline-variant/50 text-on-surface focus:ring-primary focus:border-primary py-3 px-4" id="duration">
+<option>Small (Everyday)</option>
+<option>Medium (Notable)</option>
+<option>Large (Major Event)</option>
+</select>
+</div>
+</div>
+<button class="mt-4 px-6 py-3 bg-surface-bright text-primary border border-primary rounded-xl font-label font-bold text-sm hover:bg-primary-container/20 transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined">add_circle</span>
+                            Add Custom Log
+                        </button>
+</form>
+</div>
+</section>
+</div>
+<!-- Mobile Bottom Padding -->
+<div class="h-24 lg:hidden"></div>
+</main>
+<!-- BottomNavBar (Mobile Only - from JSON but adapted for active state) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface border-t border-outline-variant/20 shadow-lg lg:hidden rounded-t-xl pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined mb-1 filled">add_circle</span>
+<span class="font-label text-xs font-bold">Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">bar_chart</span>
+<span class="font-label text-xs">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">public</span>
+<span class="font-label text-xs">Social</span>
+</a>
+</nav>
+</body></html>

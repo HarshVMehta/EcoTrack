@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Profile Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400..800&amp;family=Nunito+Sans:opsz,wght@6..12,400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2e3230",
+                        "primary-container": "#78a886",
+                        "tertiary": "#705c30",
+                        "on-secondary-fixed": "#1e1a13",
+                        "inverse-on-surface": "#f5f0e8",
+                        "surface-bright": "#faf6f0",
+                        "surface-tint": "#4a7c59",
+                        "primary": "#4a7c59",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#8ecf9e",
+                        "background": "#faf6f0",
+                        "surface-container-highest": "#e4e0d8",
+                        "on-tertiary-container": "#554020",
+                        "error": "#b83230",
+                        "error-container": "#ffdad8",
+                        "secondary": "#6b6358",
+                        "on-primary-fixed": "#002110",
+                        "on-primary-container": "#d8f0de",
+                        "tertiary-container": "#c4a66a",
+                        "on-error": "#ffffff",
+                        "outline": "#74796e",
+                        "on-tertiary-fixed": "#221a05",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae6de",
+                        "primary-fixed": "#c8e8d0",
+                        "on-secondary-fixed-variant": "#4a4538",
+                        "secondary-fixed": "#f0e8db",
+                        "on-error-container": "#690005",
+                        "surface": "#faf6f0",
+                        "on-surface": "#2e3230",
+                        "surface-container-low": "#f5f1ea",
+                        "surface-variant": "#e4e0d8",
+                        "on-primary-fixed-variant": "#2a6038",
+                        "secondary-container": "#f0e8db",
+                        "tertiary-fixed-dim": "#dcc48e",
+                        "on-background": "#2e3230",
+                        "secondary-fixed-dim": "#d4ccbf",
+                        "on-surface-variant": "#4a4e4a",
+                        "surface-dim": "#dbd7cf",
+                        "on-secondary-container": "#5e5548",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#f8e0a8",
+                        "surface-container": "#f0ece4",
+                        "on-tertiary-fixed-variant": "#554020",
+                        "inverse-primary": "#8ecf9e",
+                        "outline-variant": "#c4c8bc",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Literata"],
+                        "display": ["Literata"],
+                        "body": ["Nunito Sans"],
+                        "label": ["Nunito Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; line-height: 1.6; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Literata', serif; }
+        
+        .soft-shadow { box-shadow: 0 4px 20px rgba(46, 50, 48, 0.06); }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f1ea; }
+        ::-webkit-scrollbar-thumb { background: #dbd7cf; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c4c8bc; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full flex antialiased">
+<!-- Mobile Top App Bar (Hidden on md+) -->
+<header class="md:hidden flex justify-between items-center w-full px-6 py-3 fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<span class="font-headline text-xl font-bold text-primary">EcoTrack</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img alt="User avatar" class="w-8 h-8 rounded-full object-cover" data-alt="A close-up portrait photo of a young professional with a warm smile, styled for a modern app avatar. Natural lighting, soft focus background, organic earthy color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsva6_Bi9Ehn69iItvZTwnhdu4_F91aaLT1yPrRXb2Hg-t6gy-gEYRe9yEXQYx-CUwcdPN3IqdwfUJKcpdLBP5Lj0tOmHmG1Mgd3svHAVBEHiT87XdrjWef6BDRxqhPKQnSCNzFRUQpxTVyalF0tHhvl4P0Ykf6JTqszchn8k549p2fE_d0ST6L1HU9rRZfgoAajA1DCPmFs7t_F3Td4Cq63y-eAaP7e_TTm1MueP2A9D4rfpk32LgvIccbfiFMeELONCnl57MviVv"/>
+</div>
+</header>
+<!-- SideNavBar (Hidden on mobile, block on md+) -->
+<nav class="hidden md:flex flex-col h-full w-64 fixed left-0 top-0 bg-surface-container-low shadow-sm z-40 p-4">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-8 pt-4 px-2">
+<div class="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center overflow-hidden shrink-0">
+<img alt="User's profile picture" class="w-full h-full object-cover" data-alt="A close-up portrait photo of a young professional with a warm smile, styled for a modern app avatar. Natural lighting, soft focus background, organic earthy color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA8vOzrwxMGIpfCeMHKYDKBc66Kb-f3NKg4renhQW2ECjoMFifpOt1YlFwgEvAqypdWSBXLmEH6AdnBGXtgHGTujjOul1Y7Ef5ozbpeFAfCGWvAjjcr00B-KtaeWs5TOqfy9pUEKllDpY8np3_8zzdDqCAtcE8qMGcF0RnigkgWCaQ63ypNfQLg1hlh2tZ4RZyyWW8S-avWlFm8EfMZ9yz6BzN5_tCN-eFgGe8rYNbmxc6842pxkl1aIxep9iq5sBNlazQGXXTUmS7"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<h1 class="font-headline text-2xl font-bold text-primary truncate">EcoTrack</h1>
+<span class="font-body text-label-md text-on-surface-variant truncate">Growing Together</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Impact -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">eco</span>
+<span>Impact</span>
+</a>
+<!-- Community -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
+<span>Community</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">forest</span>
+<span>Projects</span>
+</a>
+<!-- Settings (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold bg-primary-container/20 active:scale-95 transition-transform duration-200 font-body text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="mt-auto pt-6">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 px-4 rounded-lg hover:bg-surface-tint transition-colors active:scale-95 shadow-sm font-body font-bold text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                Log Activity
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 pt-20 md:pt-0 p-6 md:p-10 lg:p-12 overflow-y-auto max-w-5xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline text-4xl text-on-surface font-bold tracking-tight mb-2">Profile Settings</h1>
+<p class="text-on-surface-variant text-lg">Manage your personal information, privacy, and tracking preferences.</p>
+</div>
+<div class="flex gap-4 shrink-0">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant bg-surface text-primary font-bold hover:bg-surface-container transition-colors active:scale-95">
+                    Cancel
+                </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-on-primary font-bold hover:bg-surface-tint transition-colors active:scale-95 shadow-sm">
+                    Save Changes
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Column 1: Profile & Security (Takes up more vertical space naturally) -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Account Info Card -->
+<section class="bg-surface-bright rounded-xl p-8 soft-shadow border border-outline-variant/30">
+<h2 class="font-headline text-2xl text-on-surface font-bold mb-6 flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary">person</span>
+                        Account Information
+                    </h2>
+<div class="flex flex-col md:flex-row gap-8 items-start mb-8">
+<!-- Avatar Upload Area -->
+<div class="flex flex-col items-center gap-4 shrink-0">
+<div class="relative w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container group cursor-pointer">
+<img alt="Current Profile Picture" class="w-full h-full object-cover transition-opacity group-hover:opacity-60" data-alt="A close-up portrait photo of a young professional with a warm smile, styled for a modern app avatar. Natural lighting, soft focus background, organic earthy color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgAwdBJig4mnS_QXiYIY7m3TH8sxuGkymwrm3AqvoSTtXbDAte6bRkzl-XmXwyJOt_hgNKzUn1ofrHTFfGnU1ROFaVd1afPakA1yLACmMrAsibKoHDaq5RIZ8U1TOdRUyBO4VBpzbGjz5OfGb1vcX-I5HolbGBbACEmjPWzcD4tw4DJLPapD755nMtnx1AVpawwWFiMbZW4wz4L9QVxDjxVbSSRwl1cJId6eFaA9PmXW4q30EG4MxT5JECmC2DKDKiG5qskG2hSxPn"/>
+<div class="absolute inset-0 bg-inverse-surface/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">photo_camera</span>
+</div>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">Change Photo</button>
+</div>
+<!-- Core Info Fields -->
+<div class="flex-1 w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-bold text-on-surface-variant text-sm" for="first_name">First Name</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="first_name" type="text" value="Alex"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-bold text-on-surface-variant text-sm" for="last_name">Last Name</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="last_name" type="text" value="Rivera"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-bold text-on-surface-variant text-sm" for="email">Email Address</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="email" type="email" value="alex.rivera@example.com"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-bold text-on-surface-variant text-sm" for="location">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="location" type="text" value="Portland, OR"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Card -->
+<section class="bg-surface-bright rounded-xl p-8 soft-shadow border border-outline-variant/30">
+<h2 class="font-headline text-2xl text-on-surface font-bold mb-6 flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary">lock</span>
+                        Security
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-bold text-on-surface-variant text-sm" for="current_password">Current Password</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="current_password" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-bold text-on-surface-variant text-sm" for="new_password">New Password</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="new_password" placeholder="New Password" type="password"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-bold text-on-surface-variant text-sm" for="confirm_password">Confirm Password</label>
+<input class="w-full bg-background border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow text-on-surface" id="confirm_password" placeholder="Confirm Password" type="password"/>
+</div>
+<div class="md:col-span-2 mt-2">
+<button class="text-primary font-bold text-sm hover:underline">Forgot password?</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Column 2: Preferences & Privacy -->
+<div class="lg:col-span-1 flex flex-col gap-8">
+<!-- Impact Preferences Card -->
+<section class="bg-surface-bright rounded-xl p-8 soft-shadow border border-outline-variant/30 h-fit">
+<h2 class="font-headline text-2xl text-on-surface font-bold mb-6 flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-tertiary">psychiatry</span>
+                        Impact Focus
+                    </h2>
+<p class="text-on-surface-variant text-sm mb-6">Select the primary areas you want to track to customize your dashboard metrics.</p>
+<div class="flex flex-col gap-4">
+<!-- Preference Toggle 1 -->
+<label class="flex items-center justify-between p-4 rounded-lg border border-surface-variant hover:border-primary/50 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<span class="font-bold text-on-surface">Transport</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</label>
+<!-- Preference Toggle 2 -->
+<label class="flex items-center justify-between p-4 rounded-lg border border-surface-variant hover:border-primary/50 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<span class="font-bold text-on-surface">Food &amp; Diet</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</label>
+<!-- Preference Toggle 3 -->
+<label class="flex items-center justify-between p-4 rounded-lg border border-primary bg-primary-container/10 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-bold text-primary">Energy Usage</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</label>
+<!-- Preference Toggle 4 -->
+<label class="flex items-center justify-between p-4 rounded-lg border border-surface-variant hover:border-primary/50 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">delete</span>
+</div>
+<span class="font-bold text-on-surface">Waste Reduction</span>
+</div>
+<input class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</label>
+</div>
+</section>
+<!-- Privacy Settings Card -->
+<section class="bg-surface-bright rounded-xl p-8 soft-shadow border border-outline-variant/30 h-fit">
+<h2 class="font-headline text-2xl text-on-surface font-bold mb-6 flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-secondary">visibility</span>
+                        Privacy
+                    </h2>
+<div class="flex flex-col gap-6">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="font-bold text-on-surface mb-1">Public Profile</h3>
+<p class="text-on-surface-variant text-sm">Allow other community members to see your impact stats and projects.</p>
+</div>
+<!-- Custom Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4 pt-4 border-t border-surface-variant/50">
+<div>
+<h3 class="font-bold text-on-surface mb-1">Activity Activity</h3>
+<p class="text-on-surface-variant text-sm">Show my recent logged activities in the community feed.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Danger Zone (Subtle) -->
+<div class="mt-12 mb-20 pt-8 border-t border-outline-variant/30 max-w-3xl">
+<h3 class="font-headline text-xl text-error font-bold mb-2">Danger Zone</h3>
+<p class="text-on-surface-variant mb-4">Once you delete your account, there is no going back. Please be certain.</p>
+<button class="px-4 py-2 rounded-lg border border-error text-error font-bold hover:bg-error-container transition-colors">
+                Delete Account
+            </button>
+</div>
+</main>
+<!-- Mobile Bottom Nav Bar (Hidden on md+) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-low shadow-[0_-4px_20px_rgba(46,50,48,0.06)] z-50 flex justify-around items-center h-16 px-2">
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-xl">dashboard</span>
+<span class="text-[10px] font-bold font-body">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-xl">eco</span>
+<span class="text-[10px] font-bold font-body">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-xl">group</span>
+<span class="text-[10px] font-bold font-body">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary" href="#">
+<div class="bg-primary-container/20 px-4 py-1 rounded-full flex flex-col items-center">
+<span class="material-symbols-outlined mb-1 text-xl">settings</span>
+</div>
+<span class="text-[10px] font-bold font-body mt-1">Settings</span>
+</a>
+</nav>
+</body></html>
