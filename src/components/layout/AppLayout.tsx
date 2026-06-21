@@ -15,7 +15,6 @@ import {
   Brain,
   MessageSquare,
   Flag,
-  User,
   BarChart2
 } from "lucide-react";
 
@@ -152,9 +151,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {[
           { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
           { href: "/activities", icon: Activity, label: "Track" },
+          { href: "/insights", icon: Brain, label: "Insights" },
           { href: "/goals", icon: Flag, label: "Goals", highlight: true },
+          { href: "/assistant", icon: MessageSquare, label: "AI Chat" },
           { href: "/challenges", icon: Users, label: "Social" },
-          { href: "/settings", icon: User, label: "Profile" },
         ].map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
