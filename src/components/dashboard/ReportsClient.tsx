@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Filter, Download, CloudRain, TreePine, Trophy, Zap, TrendingDown, ArrowRight } from 'lucide-react';
+import { Filter, Download, CloudRain, TreePine, Trophy, Zap, ArrowRight } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend
 } from 'recharts';

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Leaf, Flame, Utensils, Bike, ShoppingBag, Droplets, Car, Zap, Activity } from 'lucide-react';
+import { Leaf, Flame, Utensils, ShoppingBag, Droplets, Car, Zap, Activity } from 'lucide-react';
 
 // Native relative time formatter
 const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });

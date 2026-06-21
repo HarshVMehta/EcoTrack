@@ -1,6 +1,6 @@
 import React from 'react';
 import { auth } from '@clerk/nextjs/server';
-import { getDashboardMetrics, getCategoryData, getSustainabilityScore } from '@/lib/data-service';
+import { getDashboardMetrics, getSustainabilityScore } from '@/lib/data-service';
 import { generateInsights } from '@/lib/openai';
 import { InsightsClient } from '@/components/insights/InsightsClient';
 
@@ -18,9 +18,8 @@ export default async function InsightsPage() {
     );
   }
 
-  const [metrics, categoryData, score, insights] = await Promise.all([
+  const [metrics, score, insights] = await Promise.all([
     getDashboardMetrics(userId),
-    getCategoryData(userId),
     getSustainabilityScore(userId),
     generateInsights(userId),
   ]);
@@ -28,7 +27,6 @@ export default async function InsightsPage() {
   return (
     <InsightsClient 
       initialInsights={insights}
-      categoryData={categoryData}
       score={score}
       metrics={metrics}
     />

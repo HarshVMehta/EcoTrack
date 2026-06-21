@@ -1,6 +1,7 @@
 import React from 'react';
 import { Leaf } from 'lucide-react';
 import { SignUp } from '@clerk/nextjs';
+import Image from 'next/image';
 
 export default function SignUpPage() {
   return (
@@ -10,8 +11,10 @@ export default function SignUpPage() {
         {/* Illustration/Image Side (Left on Desktop, Top on Mobile) */}
         <div className="w-full md:w-1/2 relative bg-muted hidden md:block">
           <div className="absolute inset-0 z-0">
-            <img 
+            <Image 
               alt="Signup background" 
+              fill
+              unoptimized
               className="w-full h-full object-cover rounded-none md:rounded-r-[2rem] shadow-soft" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXuZ_AW27NDQfiQ3o9L3V510oRtaxufKdDGkJoeMPl8n6Z_JdcHBXXZWy-6AxIGB_GcFQTCQGEYNbvzMFZeIROmxdVBnBYwAghHqTPCqVplO3oT7wMkjoU3Ff8JMtMRdFWY6BF_6BYiKQfPdLfiiA70vyAOAETyMWulCP-0zEufmq1t4uVFVJhKaUXOj7zdBsw_-lFWtKSAfMury4KyNOpOTy7PLqACXRB0vhJBjw-RVSEBa4BfJeaM1CVOo--ofHj6ln0Fieb2GeG"
             />

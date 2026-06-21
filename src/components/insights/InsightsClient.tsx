@@ -161,7 +161,7 @@ export function InsightsClient({ initialInsights, score, metrics }: InsightsClie
     <div className="flex-1 overflow-y-auto p-6 md:p-10 lg:px-12 pb-24 space-y-8">
       {/* Toast Notification */}
       {notification && (
-        <div className="fixed top-6 right-6 z-[100] bg-primary text-primary-foreground px-6 py-3 rounded-2xl shadow-lg font-bold flex items-center gap-2 animate-in slide-in-from-right-5 fade-in duration-300">
+        <div role="status" aria-live="polite" className="fixed top-6 right-6 z-[100] bg-primary text-primary-foreground px-6 py-3 rounded-2xl shadow-lg font-bold flex items-center gap-2 animate-in slide-in-from-right-5 fade-in duration-300">
           {notification}
         </div>
       )}
@@ -180,9 +180,9 @@ export function InsightsClient({ initialInsights, score, metrics }: InsightsClie
           className="bg-primary text-primary-foreground font-bold text-sm px-5 py-3 rounded-xl hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm disabled:opacity-50 self-start md:self-auto shrink-0"
         >
           {isPending ? (
-            <RefreshCw className="w-4 h-4 animate-spin" />
+            <RefreshCw className="w-4 h-4 animate-spin" aria-hidden="true" />
           ) : (
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4" aria-hidden="true" />
           )}
           {isPending ? 'Regenerating...' : 'Regenerate Insights'}
         </button>
@@ -199,7 +199,7 @@ export function InsightsClient({ initialInsights, score, metrics }: InsightsClie
           </h2>
 
           <div className="relative w-44 h-44 flex items-center justify-center z-10">
-            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
               <circle className="text-muted" cx="50" cy="50" fill="none" r="42" stroke="currentColor" strokeWidth="8"></circle>
               <circle className="text-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="42" stroke="currentColor" strokeDasharray="264" strokeDashoffset={264 - (264 * (insights.ecoScore || score)) / 100} strokeWidth="8" strokeLinecap="round"></circle>
             </svg>
@@ -372,11 +372,12 @@ export function InsightsClient({ initialInsights, score, metrics }: InsightsClie
                     onClick={() => handleAdoptGoal({ title: rec.title, targetValue: rec.potentialSaving, reasoning: rec.description }, idx + 100)}
                     disabled={adoptingGoals[idx + 100]}
                     className="bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/20 text-xs font-bold py-2.5 px-4 rounded-xl transition-all flex items-center gap-1.5"
+                    aria-label={`Adopt goal: ${rec.title}`}
                   >
                     {adoptingGoals[idx + 100] ? (
-                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
                     ) : (
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3.5 h-3.5" aria-hidden="true" />
                     )}
                     Adopt Goal
                   </button>
@@ -419,11 +420,12 @@ export function InsightsClient({ initialInsights, score, metrics }: InsightsClie
                   onClick={() => handleAdoptGoal(sug, idx)}
                   disabled={adoptingGoals[idx]}
                   className="w-full bg-primary text-primary-foreground text-xs font-bold py-3 px-4 rounded-xl hover:bg-primary/90 transition-colors flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50"
+                  aria-label={`Adopt suggested goal: ${sug.title}`}
                 >
                   {adoptingGoals[idx] ? (
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
                   ) : (
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-3.5 h-3.5" aria-hidden="true" />
                   )}
                   {adoptingGoals[idx] ? 'Adopting...' : 'Adopt as Target'}
                 </button>

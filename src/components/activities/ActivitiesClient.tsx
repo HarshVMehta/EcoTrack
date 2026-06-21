@@ -96,7 +96,7 @@ export function ActivitiesClient({ metrics, initialActivities, totalPages, curre
       {/* Page Header & Summary */}
       <section className="flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-end">
         <div>
-          <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-2 tracking-tight">Today's Impact</h2>
+          <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-2 tracking-tight">Today&apos;s Impact</h2>
           <p className="font-sans text-muted-foreground text-lg max-w-2xl leading-relaxed">
             Log your daily sustainable choices and watch your positive environmental impact grow.
           </p>
@@ -228,18 +228,20 @@ export function ActivitiesClient({ metrics, initialActivities, totalPages, curre
           <h3 className="font-heading font-bold text-2xl text-foreground">Activity Feed</h3>
           <div className="flex items-center gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:w-64">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
               <input 
                 type="text" 
                 placeholder="Search activities..." 
+                aria-label="Search activities"
                 className="w-full pl-9 pr-4 py-2 bg-muted rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
             </div>
             <div className="relative">
-              <Filter className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Filter className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
               <select 
                 value={currentFilter}
                 onChange={handleFilterChange}
+                aria-label="Filter activities by category"
                 className="pl-9 pr-8 py-2 bg-muted rounded-lg text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50"
               >
                 <option value="all">All Categories</option>
@@ -270,7 +272,7 @@ export function ActivitiesClient({ metrics, initialActivities, totalPages, curre
               <div key={act.id} className="flex items-center justify-between p-4 rounded-xl border border-border hover:bg-muted/30 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${act.isReduction ? 'bg-primary/20 text-primary' : 'bg-muted text-muted-foreground'}`}>
-                    {act.isReduction ? <Cloud className="w-5 h-5" /> : <Flame className="w-5 h-5" />}
+                    {act.isReduction ? <Cloud className="w-5 h-5" aria-hidden="true" /> : <Flame className="w-5 h-5" aria-hidden="true" />}
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-foreground capitalize">
@@ -288,9 +290,10 @@ export function ActivitiesClient({ metrics, initialActivities, totalPages, curre
                   <button 
                     onClick={() => handleDelete(act.id)}
                     disabled={loadingAction === `del-${act.id}`}
+                    aria-label={`Delete activity: ${act.description || act.type}`}
                     className="p-2 text-muted-foreground hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-50"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-4 h-4" aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -379,7 +382,7 @@ export function ActivitiesClient({ metrics, initialActivities, totalPages, curre
               {loadingAction === 'custom' ? (
                  <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                <Plus className="w-5 h-5" />
+                <Plus className="w-5 h-5" aria-hidden="true" />
               )}
               Add Custom Log
             </button>

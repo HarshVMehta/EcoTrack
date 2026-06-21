@@ -29,6 +29,13 @@ export async function syncUser() {
 
     return dbUser;
   } catch (error) {
+    if (
+      error instanceof Error &&
+      (error.message.includes('Dynamic server usage') ||
+       (error as { digest?: string }).digest === 'DYNAMIC_SERVER_USAGE')
+    ) {
+      throw error;
+    }
     console.error("Error syncing user to database:", error);
     return null;
   }

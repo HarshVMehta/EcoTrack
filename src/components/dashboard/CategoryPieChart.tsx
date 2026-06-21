@@ -42,7 +42,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
           <Tooltip 
             contentStyle={{ backgroundColor: 'hsl(var(--card))', borderRadius: '8px', border: '1px solid hsl(var(--border))' }}
             itemStyle={{ color: 'hsl(var(--foreground))' }}
-            formatter={(value: number, name: string, props: any) => [`${value}% (${props.payload.raw} kg)`, name]}
+            formatter={(value: any, name: any, props: any) => [`${value}% (${props.payload.raw} kg)`, name]} // eslint-disable-line @typescript-eslint/no-explicit-any
           />
           <Legend iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
         </PieChart>

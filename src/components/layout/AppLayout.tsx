@@ -45,7 +45,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="font-sans antialiased flex h-screen overflow-hidden bg-background">
       {/* SideNavBar (WEB) */}
-      <nav className="hidden lg:flex flex-col h-full p-4 gap-2 bg-card h-screen w-64 docked left-0 border-r border-border z-40">
+      <nav className="hidden lg:flex flex-col h-full p-4 gap-2 bg-card h-screen w-64 docked left-0 border-r border-border z-40" aria-label="Main Sidebar Navigation">
         <div className="mb-8 px-2 flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-sm">
             <Leaf className="w-6 h-6" />
@@ -70,7 +70,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     : "text-muted-foreground hover:bg-muted"
                 }`}
               >
-                <Icon className={`w-5 h-5 transition-colors ${active ? "text-primary" : "group-hover:text-primary"}`} />
+                <Icon className={`w-5 h-5 transition-colors ${active ? "text-primary" : "group-hover:text-primary"}`} aria-hidden="true" />
                 <span>{link.name}</span>
               </Link>
             );
@@ -78,7 +78,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="mt-auto pt-4 space-y-1 border-t border-border">
-          <Link href="/calculator" className="w-full mb-4 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-sm hover:bg-primary/90 transition-colors block text-center">
+          <Link href="/calculator" className="w-full mb-4 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-sm hover:bg-primary/90 transition-colors block text-center" aria-label="Open Carbon Footprint Calculator">
             Reduce Footprint
           </Link>
           <Link
@@ -89,14 +89,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 : "text-muted-foreground hover:bg-muted"
             }`}
           >
-            <Settings className="w-5 h-5" />
+            <Settings className="w-5 h-5" aria-hidden="true" />
             <span className="font-bold">Settings</span>
           </Link>
           <button
+            type="button"
             onClick={() => window.open("mailto:support@ecotrack.app", "_blank")}
             className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:bg-muted rounded-xl transition-colors w-full"
+            aria-label="Contact Customer Support via Email"
           >
-            <HelpCircle className="w-5 h-5" />
+            <HelpCircle className="w-5 h-5" aria-hidden="true" />
             <span className="font-bold">Support</span>
           </button>
         </div>
@@ -107,14 +109,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {/* TopNavBar (WEB/MOBILE Header) */}
         <header className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 w-full bg-background/95 backdrop-blur-md shadow-sm border-b border-border">
           <div className="flex items-center gap-4 lg:hidden">
-            <Leaf className="text-primary w-8 h-8" />
+            <Leaf className="text-primary w-8 h-8" aria-hidden="true" />
             <h1 className="text-2xl font-heading font-bold text-primary">EcoTrack</h1>
           </div>
           
           <div className="hidden lg:flex flex-1 items-center justify-between px-4">
             <div className="flex-1 max-w-md"></div>
             <div className="flex items-center gap-6">
-              <nav className="flex gap-6">
+              <nav className="flex gap-6" aria-label="Secondary Header Navigation">
                 {topNavLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -133,11 +135,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
           
           <div className="flex items-center gap-4">
-            <Link href="/activities" className="hidden md:block px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-bold text-sm hover:bg-secondary/80 transition-colors">
+            <Link href="/activities" className="hidden md:block px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-bold text-sm hover:bg-secondary/80 transition-colors" aria-label="Log new sustainability activity">
               Track Activity
             </Link>
             <div className="w-10 h-10 rounded-full flex items-center justify-center">
-              <UserButton afterSignOutUrl="/" />
+              <UserButton />
             </div>
           </div>
         </header>
@@ -146,7 +148,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* BottomNavBar (MOBILE) */}
-      <nav className="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-card rounded-t-xl shadow-[0_-4px_20px_rgba(46,50,48,0.08)] pb-safe border-t border-border">
+      <nav className="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-card rounded-t-xl shadow-[0_-4px_20px_rgba(46,50,48,0.08)] pb-safe border-t border-border" aria-label="Mobile Navigation Bar">
         {[
           { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
           { href: "/activities", icon: Activity, label: "Track" },

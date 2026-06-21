@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Bot, Recycle, Zap, UtensilsCrossed, Send, Loader2 } from 'lucide-react';
 import { askAIAssistant } from '@/actions/insights';
 import { useUser } from '@clerk/nextjs';
+import Image from 'next/image';
 
 interface Message {
   id: string;
@@ -123,9 +124,12 @@ export default function AssistantPage() {
             >
               {isUser ? (
                 user?.imageUrl ? (
-                  <img 
+                  <Image 
                     src={user.imageUrl} 
                     alt="User" 
+                    width={40}
+                    height={40}
+                    unoptimized
                     className="w-10 h-10 rounded-full object-cover border border-border flex-shrink-0" 
                   />
                 ) : (
@@ -135,7 +139,7 @@ export default function AssistantPage() {
                 )
               ) : (
                 <div className="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <Bot className="w-6 h-6" />
+                  <Bot className="w-6 h-6" aria-hidden="true" />
                 </div>
               )}
               <div 
@@ -153,9 +157,10 @@ export default function AssistantPage() {
         
         {/* AI typing indicator */}
         {isLoading && (
-          <div className="flex items-start gap-4 max-w-3xl opacity-60">
+          <div className="flex items-start gap-4 max-w-3xl opacity-60" aria-live="polite">
+            <span className="sr-only">Assistant is typing...</span>
             <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center flex-shrink-0 scale-90">
-              <Bot className="w-5 h-5" />
+              <Bot className="w-5 h-5" aria-hidden="true" />
             </div>
             <div className="bg-background py-3 px-4 rounded-2xl rounded-tl-sm border border-border flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: "0ms" }}></div>
@@ -177,34 +182,35 @@ export default function AssistantPage() {
               disabled={isLoading}
               className="bg-card border border-border text-muted-foreground hover:bg-muted hover:text-primary hover:border-primary/40 text-sm font-sans px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2 disabled:opacity-50"
             >
-              <Recycle className="w-4 h-4" /> How can I reduce waste?
+              <Recycle className="w-4 h-4" aria-hidden="true" /> How can I reduce waste?
             </button>
             <button 
               onClick={() => handleSend("Give me some tips to reduce my home energy consumption.")}
               disabled={isLoading}
               className="bg-card border border-border text-muted-foreground hover:bg-muted hover:text-primary hover:border-primary/40 text-sm font-sans px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2 disabled:opacity-50"
             >
-              <Zap className="w-4 h-4" /> Analyze home energy
+              <Zap className="w-4 h-4" aria-hidden="true" /> Analyze home energy
             </button>
             <button 
               onClick={() => handleSend("Can you suggest some easy plant-based recipes to reduce carbon emissions?")}
               disabled={isLoading}
               className="bg-card border border-border text-muted-foreground hover:bg-muted hover:text-primary hover:border-primary/40 text-sm font-sans px-4 py-2 rounded-full transition-all duration-200 shadow-sm flex items-center gap-2 disabled:opacity-50"
             >
-              <UtensilsCrossed className="w-4 h-4" /> Plant-based recipes
+              <UtensilsCrossed className="w-4 h-4" aria-hidden="true" /> Plant-based recipes
             </button>
           </div>
           
           {/* Input Box */}
           <div className="relative flex items-end gap-2 bg-card rounded-2xl border border-border p-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
             <div className="p-3 text-muted-foreground shrink-0">
-              <Bot className="w-6 h-6 text-primary/70 animate-pulse" />
+              <Bot className="w-6 h-6 text-primary/70 animate-pulse" aria-hidden="true" />
             </div>
             <textarea 
               ref={textareaRef}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
+              aria-label="Sustainability assistant prompt"
               className="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-2 font-sans text-foreground placeholder-muted-foreground/60 max-h-32 focus:outline-none" 
               placeholder={isLoading ? "Thinking..." : "Ask the assistant about your eco-goals, stats or carbon reductions..."} 
               rows={1}
@@ -213,12 +219,13 @@ export default function AssistantPage() {
             <button 
               onClick={() => handleSend(inputText)}
               disabled={isLoading || !inputText.trim()}
+              aria-label="Send message to assistant"
               className="p-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl transition-colors shrink-0 flex items-center justify-center shadow-sm disabled:opacity-50"
             >
               {isLoading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
               ) : (
-                <Send className="w-5 h-5" />
+                <Send className="w-5 h-5" aria-hidden="true" />
               )}
             </button>
           </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Camera, User, Lock, MapPin, Car, Utensils, Zap, Trash2, Eye } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SettingsPage() {
   const [isPublic, setIsPublic] = useState(true);
@@ -41,8 +42,11 @@ export default function SettingsPage() {
               {/* Avatar Upload Area */}
               <div className="flex flex-col items-center gap-4 shrink-0">
                 <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-muted group cursor-pointer">
-                  <img 
+                  <Image 
                     alt="Current Profile Picture" 
+                    width={128}
+                    height={128}
+                    unoptimized
                     className="w-full h-full object-cover transition-opacity group-hover:opacity-60" 
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgAwdBJig4mnS_QXiYIY7m3TH8sxuGkymwrm3AqvoSTtXbDAte6bRkzl-XmXwyJOt_hgNKzUn1ofrHTFfGnU1ROFaVd1afPakA1yLACmMrAsibKoHDaq5RIZ8U1TOdRUyBO4VBpzbGjz5OfGb1vcX-I5HolbGBbACEmjPWzcD4tw4DJLPapD755nMtnx1AVpawwWFiMbZW4wz4L9QVxDjxVbSSRwl1cJId6eFaA9PmXW4q30EG4MxT5JECmC2DKDKiG5qskG2hSxPn"
                   />
@@ -176,8 +180,8 @@ export default function SettingsPage() {
                 </div>
                 {/* Custom Toggle Switch */}
                 <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
-                  <input type="checkbox" className="sr-only peer" checked={isPublic} onChange={() => setIsPublic(!isPublic)} />
-                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  <input type="checkbox" id="public_profile_toggle" aria-label="Public Profile Toggle" className="sr-only peer" checked={isPublic} onChange={() => setIsPublic(!isPublic)} />
+                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 </label>
               </div>
               
@@ -187,8 +191,8 @@ export default function SettingsPage() {
                   <p className="text-muted-foreground text-sm">Show my recent logged activities in the community feed.</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
-                  <input type="checkbox" className="sr-only peer" checked={showActivity} onChange={() => setShowActivity(!showActivity)} />
-                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  <input type="checkbox" id="activity_tracking_toggle" aria-label="Activity Tracking Toggle" className="sr-only peer" checked={showActivity} onChange={() => setShowActivity(!showActivity)} />
+                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 </label>
               </div>
             </div>

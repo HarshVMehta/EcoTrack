@@ -35,7 +35,7 @@ async function main() {
     }
   })
 
-  const c2 = await prisma.challenge.create({
+  await prisma.challenge.create({
     data: {
       title: 'Bike to Work Month',
       description: 'Commute by bicycle for 20 days this month.',

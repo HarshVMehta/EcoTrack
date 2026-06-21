@@ -1,4 +1,6 @@
 import { prisma } from './prisma';
+import { Prisma } from '@prisma/client';
+
 
 export async function getDashboardMetrics(userId: string) {
   // 1. Total carbon saved
@@ -23,7 +25,7 @@ export async function getDashboardMetrics(userId: string) {
   });
 
   let streak = 0;
-  let currentDate = new Date();
+  const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
 
   const uniqueDates = [...new Set(reductionActivities.map(a => {
@@ -132,10 +134,10 @@ export async function getCategoryData(userId: string) {
 
   if (grandTotal === 0) {
     return [
-      { name: 'Transport', percentage: 0 },
-      { name: 'Energy', percentage: 0 },
-      { name: 'Food', percentage: 0 },
-      { name: 'Shopping', percentage: 0 }
+      { name: 'Transport', percentage: 0, raw: 0 },
+      { name: 'Energy', percentage: 0, raw: 0 },
+      { name: 'Food', percentage: 0, raw: 0 },
+      { name: 'Shopping', percentage: 0, raw: 0 }
     ];
   }
 
@@ -246,9 +248,8 @@ export async function getGoals(userId: string) {
 
 export async function getAchievements(userId: string) {
   // Run all queries in parallel for speed
-  const [savingsAgg, emissionsAgg, activities, goals] = await Promise.all([
+  const [savingsAgg, activities, goals] = await Promise.all([
     prisma.activity.aggregate({ where: { userId, isReduction: true }, _sum: { carbonValue: true } }),
-    prisma.activity.aggregate({ where: { userId, isReduction: false }, _sum: { carbonValue: true } }),
     prisma.activity.findMany({ where: { userId }, select: { type: true, date: true, isReduction: true } }),
     prisma.goal.findMany({ where: { userId } })
   ]);
@@ -444,7 +445,7 @@ export async function getAllActivities(
   page: number = 1,
   pageSize: number = 10
 ) {
-  const whereClause: any = { userId };
+  const whereClause: Prisma.ActivityWhereInput = { userId };
   if (filterType !== 'all') {
     whereClause.type = filterType;
   }

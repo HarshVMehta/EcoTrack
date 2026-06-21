@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Car, Home, Utensils, Trash2, ArrowRight, ArrowLeft, Zap, BatteryCharging, ShoppingCart, Droplets, Loader2, CheckCircle2 } from 'lucide-react';
+import { Car, Home, Utensils, Trash2, ArrowRight, ArrowLeft, ShoppingCart, Droplets, Loader2, CheckCircle2 } from 'lucide-react';
 import { submitCalculator } from '@/actions/calculator';
 import type { CalculatorAnswers } from '@/lib/calculator';
 
@@ -30,7 +30,7 @@ export default function CarbonCalculatorPage() {
     { id: 6, label: 'Water', icon: Droplets },
   ];
 
-  const updateAnswer = (category: keyof CalculatorAnswers, field: string, value: any) => {
+  const updateAnswer = (category: keyof CalculatorAnswers, field: string, value: string | number) => {
     setAnswers(prev => ({
       ...prev,
       [category]: {
@@ -74,7 +74,7 @@ export default function CarbonCalculatorPage() {
       {/* Header & Progress */}
       <div className="w-full max-w-2xl mb-8 text-center">
         <h1 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-2">Carbon Calculator</h1>
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8">Let's estimate your environmental impact. Small steps lead to big changes.</p>
+        <p className="text-muted-foreground text-lg leading-relaxed mb-8">Let&apos;s estimate your environmental impact. Small steps lead to big changes.</p>
         
         {/* Progress Bar */}
         <div className="flex items-center justify-between relative px-2">
@@ -132,7 +132,7 @@ export default function CarbonCalculatorPage() {
                   ].map(type => (
                     <label key={type.id} className="cursor-pointer relative">
                       <input type="radio" name="car_type" value={type.id} className="peer sr-only" checked={answers.transport.vehicleType === type.id} onChange={(e) => updateAnswer('transport', 'vehicleType', e.target.value)} />
-                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                         <span className="font-bold text-sm text-foreground">{type.label}</span>
                       </div>
                     </label>
@@ -141,9 +141,9 @@ export default function CarbonCalculatorPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-foreground mb-3">Average Weekly Mileage</label>
+                <label className="block text-sm font-bold text-foreground mb-3" htmlFor="weekly_mileage">Average Weekly Mileage</label>
                 <div className="flex items-center gap-4">
-                  <input type="range" min="0" max="1000" value={answers.transport.weeklyMileage} onChange={(e) => updateAnswer('transport', 'weeklyMileage', parseInt(e.target.value))} className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary" />
+                  <input type="range" id="weekly_mileage" min="0" max="1000" value={answers.transport.weeklyMileage} onChange={(e) => updateAnswer('transport', 'weeklyMileage', parseInt(e.target.value))} className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary" />
                   <span className="font-bold text-primary w-24 text-right">{answers.transport.weeklyMileage} miles</span>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function CarbonCalculatorPage() {
                   {['small', 'medium', 'large'].map(size => (
                     <label key={size} className="cursor-pointer relative">
                       <input type="radio" name="home_size" value={size} className="peer sr-only" checked={answers.energy.homeSize === size} onChange={(e) => updateAnswer('energy', 'homeSize', e.target.value)} />
-                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all capitalize">
+                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all capitalize">
                         <span className="font-bold text-sm text-foreground">{size}</span>
                       </div>
                     </label>
@@ -185,7 +185,7 @@ export default function CarbonCalculatorPage() {
                   ].map(source => (
                     <label key={source.id} className="cursor-pointer relative">
                       <input type="radio" name="energy_source" value={source.id} className="peer sr-only" checked={answers.energy.energySource === source.id} onChange={(e) => updateAnswer('energy', 'energySource', e.target.value)} />
-                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                      <div className="p-3 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                         <span className="font-bold text-sm text-foreground">{source.label}</span>
                       </div>
                     </label>
@@ -217,7 +217,7 @@ export default function CarbonCalculatorPage() {
                   ].map(diet => (
                     <label key={diet.id} className="cursor-pointer relative">
                       <input type="radio" name="diet" value={diet.id} className="peer sr-only" checked={answers.food.dietType === diet.id} onChange={(e) => updateAnswer('food', 'dietType', e.target.value)} />
-                      <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                      <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                         <span className="font-bold text-sm text-foreground">{diet.label}</span>
                       </div>
                     </label>
@@ -247,7 +247,7 @@ export default function CarbonCalculatorPage() {
                 ].map(habit => (
                   <label key={habit.id} className="cursor-pointer relative">
                     <input type="radio" name="waste" value={habit.id} className="peer sr-only" checked={answers.waste.recycleHabit === habit.id} onChange={(e) => updateAnswer('waste', 'recycleHabit', e.target.value)} />
-                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                       <span className="font-bold text-sm text-foreground">{habit.label}</span>
                     </div>
                   </label>
@@ -276,7 +276,7 @@ export default function CarbonCalculatorPage() {
                 ].map(freq => (
                   <label key={freq.id} className="cursor-pointer relative">
                     <input type="radio" name="shopping" value={freq.id} className="peer sr-only" checked={answers.shopping.frequency === freq.id} onChange={(e) => updateAnswer('shopping', 'frequency', e.target.value)} />
-                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                       <span className="font-bold text-sm text-foreground">{freq.label}</span>
                     </div>
                   </label>
@@ -305,7 +305,7 @@ export default function CarbonCalculatorPage() {
                 ].map(duration => (
                   <label key={duration.id} className="cursor-pointer relative">
                     <input type="radio" name="water" value={duration.id} className="peer sr-only" checked={answers.water.showerDuration === duration.id} onChange={(e) => updateAnswer('water', 'showerDuration', e.target.value)} />
-                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary transition-all">
+                    <div className="p-4 rounded-xl border border-border bg-background text-center hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary peer-focus:ring-2 peer-focus:ring-primary/50 transition-all">
                       <span className="font-bold text-sm text-foreground">{duration.label}</span>
                     </div>
                   </label>

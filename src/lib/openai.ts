@@ -3,7 +3,7 @@ import { prisma } from './prisma';
 import { getDashboardMetrics, getCategoryData, getSustainabilityScore, getAchievements } from './data-service';
 import crypto from 'crypto';
 
-const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || 'mock-key-for-testing' });
 
 function hashData(data: unknown): string {
   return crypto.createHash('md5').update(JSON.stringify(data)).digest('hex');
@@ -163,12 +163,74 @@ Return ONLY valid JSON.`;
   }
 }
 
-function generateLocalFallback(context: any): any {
-  const sortedCategories = [...context.categoryData].sort((a: any, b: any) => (b.raw || 0) - (a.raw || 0));
+interface UserContext {
+  sustainabilityScore: number;
+  metrics: {
+    totalEmissions: number;
+    totalSaved: number;
+    streak: number;
+    offsetProgress: number;
+  };
+  categoryData: {
+    name: string;
+    percentage: number;
+    raw?: number;
+  }[];
+  earnedBadges: number;
+  totalBadges: number;
+  totalPoints: number;
+  recentActivities: {
+    type: string;
+    carbonValue: number;
+    isReduction: boolean;
+    date: string;
+    description: string | null;
+  }[];
+  goals: {
+    title: string;
+    targetValue: number;
+    currentValue: number;
+    completed: boolean;
+    deadline?: string;
+  }[];
+}
+
+interface Recommendation {
+  title: string;
+  description: string;
+  impact: string;
+  category: string;
+  potentialSaving: number;
+}
+
+interface GoalSuggestion {
+  title: string;
+  targetValue: number;
+  reasoning: string;
+}
+
+interface InsightsData {
+  summary: string;
+  ecoScore: number;
+  potentialSavings: number;
+  recommendations: Recommendation[];
+  forecast: {
+    currentMonthly: number;
+    projectedMonthly: number;
+    reductionPercent: number;
+  };
+  goalSuggestions: GoalSuggestion[];
+  behavioralInsights: string[];
+  isLocalFallback?: boolean;
+  isStale?: boolean;
+}
+
+export function generateLocalFallback(context: UserContext): InsightsData {
+  const sortedCategories = [...context.categoryData].sort((a, b) => (b.raw || 0) - (a.raw || 0));
   const primaryCategory = sortedCategories[0]?.name?.toLowerCase() || 'general';
 
-  const recommendations: any[] = [];
-  const goalSuggestions: any[] = [];
+  const recommendations: Recommendation[] = [];
+  const goalSuggestions: GoalSuggestion[] = [];
   const behavioralInsights: string[] = [];
 
   if (primaryCategory === 'transport' || primaryCategory === 'transportation') {
@@ -313,7 +375,7 @@ Be helpful, concise, and encouraging. Use specific numbers from their data. Keep
     return response.choices[0]?.message?.content || 'I apologize, I could not generate a response. Please try again.';
   } catch (error) {
     console.error('OpenAI chat error, using local reply:', error);
-    const sortedCategories = [...context.categoryData].sort((a: any, b: any) => (b.raw || 0) - (a.raw || 0));
+    const sortedCategories = [...context.categoryData].sort((a, b) => (b.raw || 0) - (a.raw || 0));
     const primaryCategory = sortedCategories[0]?.name || 'general';
     return `Hi! EcoTrack's AI is experiencing high demand right now, so I'm running in offline backup mode. 🛠️
 

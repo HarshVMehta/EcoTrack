@@ -29,7 +29,7 @@ export default function RootLayout({
         variables: { colorPrimary: '#4a7c59' },
       }}
     >
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={`${nunitoSans.variable} ${literata.variable} font-sans antialiased bg-background text-foreground`}
         >

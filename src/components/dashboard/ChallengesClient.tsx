@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Clock, Droplets, Trophy, Star, Heart, MessageCircle } from 'lucide-react';
+import { Clock, Droplets, Trophy, Star } from 'lucide-react';
 import { joinChallenge } from '@/actions/challenge';
 
 interface ChallengeType {

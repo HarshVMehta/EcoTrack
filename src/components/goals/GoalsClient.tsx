@@ -1,9 +1,45 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Target, Plus, Brain, PlusCircle, Trophy, Bike, Flame, Sun, Trash2, Utensils, X, CheckCircle2, Star, Leaf, Award } from 'lucide-react';
+import { Target, Plus, Brain, Trophy, Bike, Flame, Sun, Trash2, Utensils, X, CheckCircle2, Star, Leaf, Award } from 'lucide-react';
 import { createGoal, deleteGoal } from '@/actions/goal';
 import { useRouter } from 'next/navigation';
+
+interface EnrichedGoal {
+  id: string;
+  userId: string;
+  title: string;
+  targetValue: number;
+  currentValue: number;
+  deadline: Date | string | null;
+  completed: boolean;
+  createdAt: Date | string;
+}
+
+interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  iconType: string;
+  color: string;
+  textColor: string;
+  earned: boolean;
+  points: number;
+}
+
+interface GoalsClientProps {
+  goals: EnrichedGoal[];
+  metrics: {
+    streak: number;
+    totalSaved: number;
+  };
+  achievementsData: {
+    achievements: Achievement[];
+    totalPoints: number;
+    earnedCount: number;
+    totalBadges: number;
+  };
+}
 
 const GOAL_PRESETS = [
   { title: 'Reduce Monthly Emissions by 50kg', target: 50, icon: '🌍' },
@@ -14,7 +50,7 @@ const GOAL_PRESETS = [
   { title: 'Save 200kg CO₂ This Quarter', target: 200, icon: '🌱' },
 ];
 
-export function GoalsClient({ goals, metrics, achievementsData }: any) {
+export function GoalsClient({ goals, metrics, achievementsData }: GoalsClientProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState('');
@@ -26,8 +62,8 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
 
   const { achievements, totalPoints, earnedCount, totalBadges } = achievementsData;
 
-  const activeGoals = goals.filter((g: any) => !g.completed);
-  const completedGoals = goals.filter((g: any) => g.completed);
+  const activeGoals = goals.filter((g: EnrichedGoal) => !g.completed);
+  const completedGoals = goals.filter((g: EnrichedGoal) => g.completed);
 
   const showNotification = (msg: string) => {
     setNotification(msg);
@@ -80,7 +116,7 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
     <div className="space-y-10">
       {/* Achievement Notification Toast */}
       {notification && (
-        <div className="fixed top-6 right-6 z-[100] bg-primary text-primary-foreground px-6 py-3 rounded-2xl shadow-lg font-bold flex items-center gap-2 animate-in slide-in-from-right-5 fade-in duration-300">
+        <div role="status" aria-live="polite" className="fixed top-6 right-6 z-[100] bg-primary text-primary-foreground px-6 py-3 rounded-2xl shadow-lg font-bold flex items-center gap-2 animate-in slide-in-from-right-5 fade-in duration-300">
           {notification}
         </div>
       )}
@@ -152,7 +188,7 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                   </button>
                 </div>
               ) : (
-                activeGoals.map((goal: any) => {
+                activeGoals.map((goal: EnrichedGoal) => {
                   const progress = Math.min(100, Math.round((goal.currentValue / goal.targetValue) * 100));
                   return (
                     <div key={goal.id} className="bg-card p-6 rounded-2xl shadow-soft border border-border hover:shadow-md transition-shadow relative overflow-hidden group">
@@ -171,8 +207,9 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                             onClick={() => handleDelete(goal.id)}
                             disabled={deleteLoading === goal.id}
                             className="p-1.5 text-muted-foreground hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-50"
+                            aria-label={`Delete goal: ${goal.title}`}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-4 h-4" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -202,7 +239,7 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                 Completed ({completedGoals.length})
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {completedGoals.map((goal: any) => (
+                {completedGoals.map((goal: EnrichedGoal) => (
                   <div key={goal.id} className="bg-primary/5 p-5 rounded-2xl border border-primary/20 relative overflow-hidden">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-9 h-9 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
@@ -212,8 +249,9 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                       <button 
                         onClick={() => handleDelete(goal.id)}
                         className="p-1 text-muted-foreground hover:text-red-500 rounded transition-colors"
+                        aria-label={`Delete goal: ${goal.title}`}
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                       </button>
                     </div>
                     <div className="w-full h-2 bg-primary/20 rounded-full overflow-hidden">
@@ -239,7 +277,7 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                   onClick={() => handlePreset(preset)}
                   className="bg-card p-4 rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all text-left group"
                 >
-                  <div className="text-2xl mb-2">{preset.icon}</div>
+                  <span className="text-2xl mb-2 block" aria-hidden="true">{preset.icon}</span>
                   <h4 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors leading-snug">{preset.title}</h4>
                   <p className="text-xs text-muted-foreground mt-1">Target: {preset.target}kg CO₂</p>
                 </button>
@@ -263,7 +301,7 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
               <div className="h-full bg-[#705c30] rounded-full transition-all" style={{ width: `${(earnedCount / totalBadges) * 100}%` }}></div>
             </div>
             <div className="grid grid-cols-3 gap-4">
-              {achievements.map((ach: any) => (
+              {achievements.map((ach: Achievement) => (
                 <div 
                   key={ach.id} 
                   className={`flex flex-col items-center text-center group cursor-help relative transition-all duration-300 ${ach.earned ? '' : 'opacity-35 grayscale'}`}
@@ -320,16 +358,18 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
           <div className="bg-card border border-border rounded-3xl shadow-xl w-full max-w-md p-6 relative overflow-hidden" onClick={e => e.stopPropagation()}>
             <button 
               onClick={() => setIsModalOpen(false)}
+              aria-label="Close modal"
               className="absolute top-4 right-4 p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
             <h2 className="font-heading text-2xl font-bold text-foreground mb-6">Create New Target</h2>
             <form onSubmit={handleCreate} className="space-y-4">
               <div>
-                <label className="block text-sm font-bold text-foreground mb-1">Goal Title</label>
+                <label className="block text-sm font-bold text-foreground mb-1" htmlFor="goal_title">Goal Title</label>
                 <input 
                   type="text" 
+                  id="goal_title"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                   placeholder="e.g., Bike to work 10 times"
@@ -338,9 +378,10 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-1">Target Reduction (kg CO₂)</label>
+                <label className="block text-sm font-bold text-foreground mb-1" htmlFor="target_reduction">Target Reduction (kg CO₂)</label>
                 <input 
                   type="number" 
+                  id="target_reduction"
                   value={targetValue}
                   onChange={e => setTargetValue(Number(e.target.value))}
                   min="1"
@@ -349,9 +390,10 @@ export function GoalsClient({ goals, metrics, achievementsData }: any) {
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-1">Deadline (Optional)</label>
+                <label className="block text-sm font-bold text-foreground mb-1" htmlFor="goal_deadline">Deadline (Optional)</label>
                 <input 
                   type="date" 
+                  id="goal_deadline"
                   value={deadline}
                   onChange={e => setDeadline(e.target.value)}
                   className="w-full rounded-xl bg-muted border border-transparent text-foreground focus:ring-2 focus:ring-primary focus:bg-card focus:border-primary py-3 px-4 transition-all"

@@ -43,7 +43,7 @@ export default async function DashboardPage() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h2 className="font-heading text-3xl font-bold text-foreground">Welcome back, {firstName}</h2>
-          <p className="text-muted-foreground mt-1 text-lg">You're making a measurable difference this week.</p>
+          <p className="text-muted-foreground mt-1 text-lg">You&apos;re making a measurable difference this week.</p>
         </div>
         <Link href="/activities" className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all shadow-sm active:scale-95 w-fit">
           <Plus className="w-5 h-5" />
@@ -166,7 +166,7 @@ export default async function DashboardPage() {
             {goals.length === 0 ? (
               <div className="text-center py-6 text-muted-foreground">No active goals.</div>
             ) : (
-              goals.slice(0, 2).map((goal: any) => {
+              goals.slice(0, 2).map((goal: { id: string; title: string; currentValue: number; targetValue: number; completed: boolean }) => {
                 const progress = Math.min(100, Math.round((goal.currentValue / goal.targetValue) * 100));
                 return (
                   <div key={goal.id} className="bg-muted/50 rounded-xl p-4 border border-border">
