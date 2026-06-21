@@ -27,12 +27,12 @@ jest.mock('@/lib/prisma', () => ({
 describe('Goal Actions', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (auth as jest.Mock).mockResolvedValue({ userId: 'test-user-123' });
+    (auth as unknown as jest.Mock).mockResolvedValue({ userId: 'test-user-123' });
   });
 
   describe('createGoal', () => {
     test('should fail if user is not authenticated', async () => {
-      (auth as jest.Mock).mockResolvedValueOnce({ userId: null });
+      (auth as unknown as jest.Mock).mockResolvedValueOnce({ userId: null });
 
       const result = await createGoal('Reduce emissions', 100);
 
@@ -89,7 +89,7 @@ describe('Goal Actions', () => {
 
   describe('deleteGoal', () => {
     test('should fail if user is not authenticated', async () => {
-      (auth as jest.Mock).mockResolvedValueOnce({ userId: null });
+      (auth as unknown as jest.Mock).mockResolvedValueOnce({ userId: null });
 
       const result = await deleteGoal('goal-1');
 
